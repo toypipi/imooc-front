@@ -1,0 +1,191 @@
+# DAY 1 项目雏形搭建
+
+《小慕前端》，对应的版本信息如下:
+vite 版本:2.8.0
+node 版本:16.13.1
+npm 版本:8.1.2
+
+使用 nvm 安装 node v16.13.1 版本。
+
+```bash
+nvm install 16.13.1
+```
+
+安装 vite。
+
+```bash
+npm install -g vite@2.8.6
+```
+
+创建一个项目。
+
+```bash
+npm init vite@latest
+```
+
+安装依赖。
+
+```bash
+npm install
+```
+
+启动项目。
+
+```bash
+npm run dev
+```
+
+# DAY 2 tailwindcss
+
+安装 tailwindcss
+
+```bash
+npm install -D tailwindcss@3.0.23 postcss@8.4.8 autoprefixer@10.4.2
+```
+
+配置 tailwindcss
+
+```bash
+npx tailwindcss init -p
+```
+
+在 `tailwind.config.js` 中配置 `content`。
+
+```js
+module.exports = {
+  content: ['./index.html', './src/**/*.{vue,js}'],
+  theme: {
+    extend: {}
+  },
+  plugins: []
+}
+```
+
+安装 sass
+
+```bash
+npm install -D sass@1.45.0
+```
+
+在 `src/styles/index.scss` 中引入 tailwindcss。
+
+```css
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+```
+
+在 `src/main.js` 中引入 `index.scss`。
+
+```js
+import './styles/index.scss'
+```
+
+tailwindcss 初体验。修改 `src/App.vue` 中的内容。
+
+```vue
+<template>
+  <div class="bg-slate-800 rounded-xl p-8 md:flex md:p-0">
+    <img
+      class="w-24 h-24 rounded-full mx-auto md:w-48 md:h-auto md:rounded-none"
+      src="https://picsum.photos/200/300"
+      alt=""
+    />
+    <div class="pt-6 text-center space-y-4 md:p-8 md:text-left">
+      <p class="text-g font-medium text-zinc-100">
+        "这是使用 tailwindcss 来实现的一个基础的卡片区域，在实现该
+        卡片区域的过程中，我们从来没有离开过HTML区域"
+      </p>
+      <div class="font-medium">LGD_Sunday</div>
+      <div calss="text-slate-500">中前台前端解决方案</div>
+    </div>
+  </div>
+</template>
+
+<script setup></script>
+
+<style lang="scss" scoped></style>
+```
+
+# DAY 3 搭建基础项目结构
+
+vscode 插件安装：
+
+- Prettier - Code formatter
+- Tailwind CSS IntelliSense
+- Volar
+
+安装 vuex 和 vue-router。
+
+```bash
+
+npm i --save vuex@4.0.2 vue-router@4.0.14
+```
+
+搭建基础项目结构。生成项目源码结构方法如下：在扩展商店中搜索 “project-tree”，点击 “安装”，按下快捷键 “Ctrl+Shift+P”, 在弹框中输入 Project Tree，命令执行成功后，右下角会弹出提示框 “Your README.md has been modified”，打开项目根目录下的 README.md 文件，可以看到利用 Project Tree 插件生成的项目源码结构。
+
+```
+   ├─ src
+   │  ├─ api // 接口请求
+   │  ├─ App.vue //项目根组件，一级路由出口
+   │  ├─ assets  // 静态资源
+   │  │  ├─ icons //svg icon 图标
+   │  │  ├─ images //image 图标。比如:xxx.png
+   │  │  └─ vue.svg //logo
+   │  ├─ components //通用的业务组件。比如:一个组件在多个页面中使用到
+   │  ├─ constants //常量
+   │  ├─ libs //通用组件，可用于构建中台物料库或通用组件库
+   │  ├─ main.js //入口文件
+   │  ├─ permission.js /页面权限控制中心
+   │  ├─ router //路由
+   │  │  ├─ index.js  // 路由处理中心
+   │  │  └─ modules //路由模块
+   │  │     ├─ mobile-routes.js //移动端路由
+   │  │     └─ pc-routes.js // PC 端路由
+   │  ├─ store  //全局状态
+   │  │  ├─ getters.js //全局状态访问处理
+   │  │  ├─ index.js  //全局状态中心
+   │  │  └─ modules  //状态子模块
+   │  ├─ style.css
+   │  ├─ styles // 全局样式
+   │  │  ├─ index.css
+   │  │  ├─ index.min.css
+   │  │  └─ index.scss  // 全局通用的样式处理
+   │  ├─ utils  //工具模块
+   │  ├─ vendor  //外部供应资源。比如:人类行为认证
+   │  └─ views  //页面组件。与components 的区别在于:此处组件对应路由表，**以页面的形式展示**
+   │     └─ layout  //用于 PC 端，分割一级路由和二级路由
+   │        ├─ components //该页面组件下的业务组件
+   │        └─ index.vue  // layout 组件
+   ├─ tailwind.config.js //wailwind css 配置文件，与 src 平级
+   └─ vite.config.js //vite 配置文件，与src 平级
+```
+
+# DAY 5 Vite
+
+安装 VueUse 库。VueUse 是一个为 Vue.js 提供的实用函数集合，它可以帮助你更轻松地使用 Vue.js 的功能。VueUse 提供了大量的实用函数，包括状态管理、事件处理、动画、表单处理等，可以帮助你更快速地构建 Vue.js 应用程序。
+
+```bash
+npm i @vueuse/core@8.1.2
+```
+
+通过 @ 表示 src 路径。在 vite.config.js 中配置别名：
+
+```js
+import { defineConfig } from 'vite'
+import vue from '@vitejs/plugin-vue'
+import { join } from 'path'
+
+// https://vite.dev/config/
+export default defineConfig({
+  plugins: [vue()],
+  // 软链接
+  resolve: {
+    alias: {
+      '@': join(__dirname, 'src')
+    }
+  }
+})
+```
+
+提供了一个简单的后台程序，用于处理接口返回数据，使用 Node.js 编写。文件位于项目的根目录下，文件名 `server.js`.在项目根目录下使用 `node server.js` 启动该程序。
