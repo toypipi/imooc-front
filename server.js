@@ -9,7 +9,82 @@ const server = http.createServer((req, res) => {
       if (parsedUrl.pathname === '/category') {
         // 确保 res 在回调内部使用
         res.writeHead(200, { 'Content-Type': 'application/json' })
-        res.end(JSON.stringify({ success: true, code: 200 }))
+        res.end(
+          JSON.stringify({
+            success: true,
+            code: 200,
+            message: 'success',
+            data: {
+              categories: [
+                {
+                  id: 'web_app_icon',
+                  name: 'UI/UX',
+                  col: 1,
+                  urlname: 'web_app_icon'
+                },
+                {
+                  id: 'design',
+                  name: '平面',
+                  col: 1,
+                  urlname: 'design'
+                },
+                {
+                  id: 'illustration',
+                  name: '插画/漫画',
+                  col: 1,
+                  urlname: 'illustration'
+                },
+                {
+                  id: 'photography',
+                  name: '摄影',
+                  col: 2,
+                  urlname: 'photography'
+                },
+                { id: 'games', name: '游戏', urlname: 'games' },
+                { id: 'anime', name: '动漫', urlname: 'anime' },
+                {
+                  id: 'industrial_design',
+                  name: '工业设计',
+                  col: 2,
+                  urlname: 'industrial_design'
+                },
+                {
+                  id: 'architecture',
+                  name: '建筑设计',
+                  urlname: 'architecture'
+                },
+                { id: 'art', name: '人文艺术', urlname: 'art' },
+                { id: 'home', name: '家居/家装', col: 1, urlname: 'home' },
+                {
+                  id: 'apparel',
+                  name: '女装/搭配',
+                  col: 1,
+                  urlname: 'apparel'
+                },
+                { id: 'men', name: '男士/风尚', col: 2, urlname: 'men' },
+                {
+                  id: 'modeling _hair',
+                  name: '造型/美妆',
+                  urlname: 'modeling hair'
+                },
+                { id: 'diy_crafts', name: '手工/布艺', urlname: 'diy_crafts' },
+                { id: 'food drink', name: '美食', urlname: 'food drink' },
+                { id: 'travel_places', name: '旅行', urlname: 'travel_places' },
+                {
+                  id: 'wedding_events',
+                  name: '婚礼',
+                  col: 2,
+                  urlname: 'wedding_events'
+                },
+                { id: 'kids', name: '儿童', urlname: 'kids' },
+                { id: 'pets', name: '宠物', urlname: 'pets' },
+                { id: 'quotes', name: '美图', urlname: 'quotes' },
+                { id: 'people', name: '明星', urlname: 'people' },
+                { id: 'beauty', name: '美女', urlname: 'beauty' }
+              ]
+            }
+          })
+        )
       } else {
         res.writeHead(404, { 'Content-Type': 'text/plain' })
         res.end('Not Found')
