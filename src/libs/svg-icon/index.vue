@@ -18,8 +18,7 @@ const props = defineProps({
   },
   // tailwind 指定的 svg 颜色的类名
   fillClass: {
-    type: String,
-    required: true
+    type: String
   }
 })
 
