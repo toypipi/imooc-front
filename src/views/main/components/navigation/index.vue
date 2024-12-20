@@ -13,7 +13,6 @@ const categoryData = ref([])
 const getCategoryData = async () => {
   const { categories } = await getCategory()
   categoryData.value = categories
-  console.log(categoryData.value)
 }
 
 getCategoryData()

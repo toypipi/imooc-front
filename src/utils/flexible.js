@@ -26,7 +26,6 @@ export const useREM = () => {
     // 计算 fontsize，根据屏幕宽度/10
     let fontSize = window.innerWidth / 10
     fontSize = fontSize > MAX_FONT_SIZE ? MAX_FONT_SIZE : fontSize
-    console.log(fontSize)
     // 把计算出来的 fontsize 赋给 html 的根标签
     html.style.fontSize = fontSize + 'px'
   })
