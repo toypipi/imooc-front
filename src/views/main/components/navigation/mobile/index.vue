@@ -44,7 +44,7 @@ defineProps({
 
 // 滑块
 const sliderStyle = ref({
-  width: '60px',
+  width: '52px',
   transform: 'translateX(0px)'
 })
 
