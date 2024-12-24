@@ -30,7 +30,7 @@
       </li>
     </ul>
     <m-popup v-model="isVisible">
-      <div>我是内容</div>
+      <menu-vue :categories="data" @onItemClick="onItemClick"></menu-vue>
     </m-popup>
   </div>
 </template>
@@ -38,6 +38,7 @@
 <script setup>
 import { onBeforeUpdate, ref, watch } from 'vue'
 import { useScroll } from '@vueuse/core'
+import MenuVue from '@/views/main/components/menu/index.vue'
 // 在 vite 构建的项目中，可以直接使用 defineProps 来接收父组件传递的 props
 defineProps({
   data: {
@@ -87,6 +88,7 @@ watch(currentCategoryIndex, (val) => {
 // item 点击事件
 const onItemClick = (index) => {
   currentCategoryIndex.value = index
+  isVisible.value = false
 }
 
 // 是否显示 popup
