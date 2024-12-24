@@ -189,3 +189,21 @@ export default defineConfig({
 ```
 
 提供了一个简单的后台程序，用于处理接口返回数据，使用 Node.js 编写。文件位于项目的根目录下，文件名 `server.js`.在项目根目录下使用 `node server.js` 启动该程序。
+
+# DAY 6 构件自己的组件库
+
+vite 处理 svg 矢量图，安装 `vite-plugin-svg-icons` 插件:
+
+```bash
+npm i --save-dev vite-plugin-svg-icons@2.0.1
+```
+
+## 处理滑块切换逻辑
+
+当 slider 进行切换时，它的当前位置就是通过 translateX 进行指定，也就是说我们只需要计算出当前点击的 item 位置与宽度即可。
+那么想要达到这个目的，我们就需要具备以下内容:
+
+1.选中的 item 下标: currentCategoryIndex 。  
+2.所有 item 元素: itemRefs。  
+3.ul 的横向滚动偏离位置: ulScrollLeft 。  
+4.最后在 currentcategoryIndex 发生改变时，获取 item 下标元素的 left 和 width，计算 sliderStyle 即可。
