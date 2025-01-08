@@ -35,7 +35,7 @@
 import { ref } from 'vue'
 
 /**
- * 状态切换处理
+ * 展开状态切换处理
  */
 const isOpenCategory = ref(false)
 const triggerState = () => {
