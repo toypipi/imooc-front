@@ -85,6 +85,39 @@ const server = http.createServer((req, res) => {
             }
           })
         )
+      } else if (parsedUrl.pathname === '/pexels/list') {
+        res.writeHead(200, { 'Content-Type': 'application/json' })
+        res.end(
+          JSON.stringify({
+            success: true,
+            code: 200,
+            message: 'success',
+            data: {
+              page: '1',
+              size: '20',
+              total: 533,
+              // 课程中该接口返回的数据格式
+              list: [
+                {
+                  author: '',
+                  authorLike: '',
+                  avatar: '',
+                  id: '',
+                  photo: '',
+                  photoDownLink: '',
+                  photoHeight: 625,
+                  photoLink: '',
+                  photoType: '',
+                  photoWidth: 500,
+                  tags: ['all', 'home', 'desire', 'pets'],
+                  title: '图片数据来自 pexels',
+                  __v: 0,
+                  _id: ''
+                }
+              ]
+            }
+          })
+        )
       } else {
         res.writeHead(404, { 'Content-Type': 'text/plain' })
         res.end('Not Found')
