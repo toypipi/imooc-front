@@ -207,3 +207,13 @@ npm i --save-dev vite-plugin-svg-icons@2.0.1
 2.所有 item 元素: itemRefs。  
 3.ul 的横向滚动偏离位置: ulScrollLeft 。  
 4.最后在 currentcategoryIndex 发生改变时，获取 item 下标元素的 left 和 width，计算 sliderStyle 即可。
+
+# DAY 10 瀑布流 + 长列表 + 懒加载处理方案
+
+因为课程中获取图片数据接口返回的数据太多，不方便模拟。修改为使用 Pexels 提供的接口获取图片数据。
+
+可以在这里申请一个免费的 [API Key](https://www.pexels.com/api/)，官方[详细文档](https://www.pexels.com/api/documentation/)。
+
+将 `src\views\main\components\list\index.vue` 中的 API Key 替换为你自己申请的。
+
+程序代码可以参考这个仓库[pexles_clone](https://github.com/Ekefrancisokechukwu/pexles_clone/blob/main/src/utils/useFetch.jsx)。
