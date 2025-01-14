@@ -25,7 +25,8 @@
 </template>
 
 <script setup>
-import { onMounted, ref, computed } from 'vue'
+import { onMounted, ref, computed, nextTick, watch } from 'vue'
+import { getImgElements, getAllImg, onCompleteImgs } from './utils'
 
 const props = defineProps({
   // 数据源
@@ -111,6 +112,63 @@ onMounted(() => {
   // 计算列宽
   useColumnWidth()
 })
+
+// item 高度集合
+let itemHeights = []
+
+// 监听图片加载完成(需要图片预加载，图片高度未知)，使用 pexels 接口需要图片预加载
+const waitImgComplete = () => {
+  itemHeights = []
+  // 拿到所有的元素
+  let itemElements = [...document.getElementsByClassName('m-waterfall-item')]
+  // 获取到元素的 img 标签
+  const imgElements = getImgElements(itemElements)
+  // 获取所有 img 标签的图片
+  const allImgs = getAllImg(imgElements)
+  // 等待图片加载完成
+  onCompleteImgs(allImgs).then(() => {
+    // 图片加载完成
+    itemElements.forEach((item) => {
+      itemHeights.push(item.offsetHeight)
+    })
+    // 渲染位置
+    useItemLocation()
+  })
+}
+
+// 不需要图片预加载，图片高度已知
+const useItemHeight = () => {
+  itemHeights = []
+  // 拿到所有的元素
+  let itemElements = [...document.getElementsByClassName('m-waterfall-item')]
+  // 计算 item 高度
+  itemElements.forEach((item) => {
+    itemHeights.push(item.offsetHeight)
+  })
+  // 渲染位置
+  useItemLocation()
+}
+
+// 渲染位置
+const useItemLocation = () => {}
+
+// 触发计算
+watch(
+  () => props.data,
+  () => {
+    nextTick(() => {
+      if (props.picturePreReading) {
+        waitImgComplete()
+      } else {
+        useItemHeight()
+      }
+    })
+  },
+  {
+    deep: true,
+    immediate: true
+  }
+)
 </script>
 
 <style lang="scss" scoped></style>
