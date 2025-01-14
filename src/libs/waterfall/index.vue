@@ -24,9 +24,22 @@
   </div>
 </template>
 
+<script>
+export default {
+  name: 'waterfall'
+}
+</script>
+
 <script setup>
-import { onMounted, ref, computed, nextTick, watch } from 'vue'
-import { getImgElements, getAllImg, onCompleteImgs } from './utils'
+import { onMounted, ref, computed, nextTick, watch, onUnmounted } from 'vue'
+import {
+  getImgElements,
+  getAllImg,
+  onCompleteImgs,
+  getMinHeightColumn,
+  getMinHeight,
+  getMaxHeight
+} from './utils'
 
 const props = defineProps({
   // 数据源
@@ -150,13 +163,66 @@ const useItemHeight = () => {
 }
 
 // 渲染位置
-const useItemLocation = () => {}
+const useItemLocation = () => {
+  // 遍历数据源
+  props.data.forEach((item, index) => {
+    // 避免重复计算
+    if (item._style) return
+    // 生成 style 属性
+    item._style = {}
+    // left
+    item._style.left = getItemLeft()
+    // top
+    item._style.top = getItemTop()
+    // 指定的列高度的自增
+    increasingHeight(index)
+  })
+
+  // 指定容器的高度
+  containerHeight.value = getMaxHeight(columnHeightObj.value)
+}
+
+// 组件销毁的时候，清除所有的 _style
+onUnmounted(() => {
+  props.data.forEach((item) => {
+    delete item._style
+  })
+})
+
+// 返回下一个 item 的 left
+const getItemLeft = () => {
+  // 拿到最小高度的列
+  const column = getMinHeightColumn(columnHeightObj.value)
+  return (
+    column * (columnWidth.value + props.columnSpacing) + containerLeft.value
+  )
+}
+
+// 返回下一个 item 的 top
+const getItemTop = () => {
+  return getMinHeight(columnHeightObj.value)
+}
+
+// 指定列高度自增
+const increasingHeight = (index) => {
+  // 拿到最小高度的列
+  const minHeightColumn = getMinHeightColumn(columnHeightObj.value)
+  // 使该列自增
+  columnHeightObj.value[minHeightColumn] +=
+    itemHeights[index] + props.rowSpacing
+}
 
 // 触发计算
 watch(
   () => props.data,
-  () => {
+  (newVal) => {
     nextTick(() => {
+      // 第一次获取数据时，构建高度记录容器
+      const resetColumnHeight = newVal.every((item) => !item._style)
+      if (resetColumnHeight) {
+        // 构建高度记录容器
+        useColumnHeightObj()
+      }
       if (props.picturePreReading) {
         waitImgComplete()
       } else {
