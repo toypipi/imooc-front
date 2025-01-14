@@ -1,7 +1,7 @@
 <template>
   <div class="h-screen">
     <headerVue class="h-header" />
-    <mainVue class="h-main" />
+    <div class="h-main"><mainVue /></div>
     <floatingVue />
   </div>
 </template>
