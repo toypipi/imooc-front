@@ -1,6 +1,15 @@
 <template>
   <div>
-    <itemVue v-for="item in pexelsList" :key="item.id" :data="item" />
+    <m-waterfall
+      :data="pexelsList"
+      :nodeKey="id"
+      :column="5"
+      :picturePreReading="true"
+    >
+      <template v-slot="{ item, width }">
+        <item-vue :data="item" :width="width" />
+      </template>
+    </m-waterfall>
   </div>
 </template>
 
