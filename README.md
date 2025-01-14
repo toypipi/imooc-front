@@ -217,3 +217,15 @@ npm i --save-dev vite-plugin-svg-icons@2.0.1
 将 `src\views\main\components\list\index.vue` 中的 API Key 替换为你自己申请的。
 
 程序代码可以参考这个仓库[pexles_clone](https://github.com/Ekefrancisokechukwu/pexles_clone/blob/main/src/utils/useFetch.jsx)。
+
+## 构建瀑布流的过程
+
+整个的一个瀑布流组件的构建我们需要分成几部分:
+
+1. 通过 props 传递关键数据(部分)
+   1. data:数据源
+   2. nodeKey:唯一标识
+   3. column:渲染的列数
+   4. picturePreReading:是否需要图片预渲染
+2. 瀑布流渲染机制:通过 absolute 配合 relative 完成布局，布局逻辑为:每个 item 应该横向排列、第二行的 item 顺序连接到当前最短的列中
+3. 通过 作用域插槽 将每个 item 中涉及到的关键数据，传递到 item 视图中
