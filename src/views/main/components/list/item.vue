@@ -6,6 +6,7 @@
         class="w-full rounded bg-transparent"
         :src="data.src.original"
         alt=""
+        :style="{ height: (width / data.width) * data.height + 'px' }"
       />
       <!-- 遮罩层 -->
       <div
@@ -60,6 +61,9 @@ defineProps({
   data: {
     type: Object,
     required: true
+  },
+  width: {
+    type: Number
   }
 })
 </script>

@@ -244,16 +244,20 @@ const reset = () => {
     props.data.forEach((item) => {
       item._style = null
     })
-  }, 100)
+  }, 200)
 }
 
 // 监听列数的变化
 watch(
   () => props.column,
   () => {
-    columnWidth.value = 0
-    // 数据改变之后，视图改变之后的回调
-    reset()
+    if (props.picturePreReading) {
+      columnWidth.value = 0
+      // 数据改变之后，视图改变之后的回调
+      reset()
+    } else {
+      reset()
+    }
   }
 )
 </script>

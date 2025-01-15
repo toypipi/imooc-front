@@ -3,9 +3,9 @@
     <m-waterfall
       class="px-1 w-full"
       :data="pexelsList"
-      :nodeKey="id"
+      nodeKey="id"
       :column="isMobileTerminal ? 2 : 5"
-      :picturePreReading="true"
+      :picturePreReading="false"
     >
       <template v-slot="{ item, width }">
         <item-vue :data="item" :width="width" />
