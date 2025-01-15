@@ -1,9 +1,10 @@
 <template>
   <div>
     <m-waterfall
+      class="px-1 w-full"
       :data="pexelsList"
       :nodeKey="id"
-      :column="5"
+      :column="isMobileTerminal ? 2 : 5"
       :picturePreReading="true"
     >
       <template v-slot="{ item, width }">
@@ -18,6 +19,7 @@ import { getPexlesList } from '@/api/pexels'
 import itemVue from './item.vue'
 import { ref } from 'vue'
 import axios from 'axios'
+import { isMobileTerminal } from '@/utils/flexible'
 
 /**
  * 构建数据请求
