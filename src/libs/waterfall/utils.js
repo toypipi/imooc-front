@@ -50,7 +50,7 @@ export const getMinHeight = (columnHeightObj) => {
  */
 export const getMaxHeight = (columnHeightObj) => {
   const columnHeightArr = Object.values(columnHeightObj)
-  return Math.max(columnHeightArr)
+  return Math.max(...columnHeightArr)
 }
 
 /**
