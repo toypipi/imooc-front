@@ -235,6 +235,27 @@ watch(
     immediate: true
   }
 )
+
+// 重新构建瀑布流
+const reset = () => {
+  setTimeout(() => {
+    useColumnWidth()
+    // 重置所有的定位数据
+    props.data.forEach((item) => {
+      item._style = null
+    })
+  }, 100)
+}
+
+// 监听列数的变化
+watch(
+  () => props.column,
+  () => {
+    columnWidth.value = 0
+    // 数据改变之后，视图改变之后的回调
+    reset()
+  }
+)
 </script>
 
 <style lang="scss" scoped></style>
