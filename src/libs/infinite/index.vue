@@ -18,7 +18,7 @@
 </template>
 
 <script setup>
-import { ref } from 'vue'
+import { ref, watch } from 'vue'
 import { useVModel, useIntersectionObserver } from '@vueuse/core'
 const props = defineProps({
   // 是否处于加载状态
@@ -40,21 +40,33 @@ const loading = useVModel(props)
 
 // 滚动的元素
 const loadingTarget = ref(null)
+// 记录当前是否在底部
+const targetIsIntersecting = ref(false)
 
 // 监听 loadingTarget 是否进入视口
-useIntersectionObserver(
-  loadingTarget,
-  ([{ isIntersecting }]) => {
+useIntersectionObserver(loadingTarget, ([{ isIntersecting }]) => {
+  targetIsIntersecting.value = isIntersecting
+  emitLoad()
+})
+
+// 触发 load 事件
+const emitLoad = () => {
+  // 解决数据渲染没有完成触发两次请求图片接口的问题
+  setTimeout(() => {
     // 当加载更多的视图可见时，同时 loading 为 false，同时 数据尚未全部加载完。处理加载更多的逻辑
-    if (isIntersecting && !loading.value && !props.ifFinished) {
+    if (targetIsIntersecting.value && !loading.value && !props.ifFinished) {
       // 修改加载数据标记
       loading.value = true
       // 触发加载更多的行为
       emits('onLoad')
     }
-  },
-  { threshold: 0.1 }
-)
+  }, 100)
+}
+
+// 监听 loading 的变化，解决数据加载完之后，首屏未铺满的问题
+watch(loading, () => {
+  emitLoad()
+})
 </script>
 
 <style lang="scss" scoped></style>

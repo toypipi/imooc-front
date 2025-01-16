@@ -79,7 +79,6 @@ const getPexlesData = () => {
       console.log(pexelsList.value)
     })
 }
-getPexlesData()
 
 // 老师课程里使用的方法
 // const pexelsList = ref([])
