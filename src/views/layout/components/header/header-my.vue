@@ -6,6 +6,7 @@
       >
         <!-- 头像 -->
         <img
+          v-lazy
           src="https://img2.baidu.com/it/u=2181408742,1474736403&fm=253&fmt=auto&app=138&f=JPEG?w=800&h=800"
           alt=""
           class="w-3 h-3 rounded-sm"
