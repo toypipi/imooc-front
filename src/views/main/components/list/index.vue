@@ -1,16 +1,22 @@
 <template>
   <div>
-    <m-waterfall
-      class="px-1 w-full"
-      :data="pexelsList"
-      nodeKey="id"
-      :column="isMobileTerminal ? 2 : 5"
-      :picturePreReading="false"
+    <m-infinite
+      v-model="loading"
+      :isFinished="isFinished"
+      @onLoad="getPexlesData"
     >
-      <template v-slot="{ item, width }">
-        <item-vue :data="item" :width="width" />
-      </template>
-    </m-waterfall>
+      <m-waterfall
+        class="px-1 w-full"
+        :data="pexelsList"
+        nodeKey="id"
+        :column="isMobileTerminal ? 2 : 5"
+        :picturePreReading="false"
+      >
+        <template v-slot="{ item, width }">
+          <item-vue :data="item" :width="width" />
+        </template>
+      </m-waterfall>
+    </m-infinite>
   </div>
 </template>
 
@@ -35,9 +41,21 @@ let params = {
   per_page: 20
 }
 
+// 数据是否在加载中
+const loading = ref(false)
+// 数据是否加载完成
+const isFinished = ref(false)
 // 获取 Pexels 图片列表
+// 数据源
 const pexelsList = ref([])
+// 加载数据的方法
 const getPexlesData = () => {
+  // 数据全部加载完成 return
+  if (isFinished.value) return
+  // 完成了第一次请求之后，后续的请求让 page 自增
+  if (pexelsList.value.length) {
+    params.page++
+  }
   axios
     .get(search.BASE_URL, {
       params,
@@ -46,7 +64,18 @@ const getPexlesData = () => {
       }
     })
     .then((res) => {
-      pexelsList.value = res.data.photos
+      if (params.page === 1) {
+        pexelsList.value = res.data.photos
+      } else {
+        pexelsList.value = [...pexelsList.value, ...res.data.photos]
+      }
+      // 判断数据是否全部加载完成
+      // 注意：使用 pexels 接口可以一直获取图片，不存在加载完成的情况
+      if (pexelsList.value.length >= res.data.total) {
+        isFinished.value = true
+      }
+      // 修改 loading 状态
+      loading.value = false
       console.log(pexelsList.value)
     })
 }
