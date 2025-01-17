@@ -23,10 +23,12 @@
 <script setup>
 import { getPexlesList } from '@/api/pexels'
 import itemVue from './item.vue'
-import { ref } from 'vue'
+import { ref, watch } from 'vue'
+import { useStore } from 'vuex'
 import axios from 'axios'
 import { isMobileTerminal } from '@/utils/flexible'
 
+const store = useStore()
 /**
  * 构建数据请求
  */
@@ -80,6 +82,32 @@ const getPexlesData = () => {
     })
 }
 
+// 通过此方法修改请求参数，重新发起请求
+const resetQuery = (newQuery) => {
+  params = {
+    ...params,
+    ...newQuery
+  }
+  // 重置状态
+  isFinished.value = false
+  pexelsList.value = []
+}
+
+// 监听 currentCategory 的变化
+watch(
+  () => store.getters.currentCategory,
+  (currentCategory) => {
+    // 如果 currentCategory 包含 _ ，则根据 _ 分割，取第一个单词
+    if (currentCategory.id.includes('_')) {
+      params.query = currentCategory.id.split('_')[0]
+    } else {
+      params.query = currentCategory.id
+    }
+    resetQuery({
+      page: 1
+    })
+  }
+)
 // 老师课程里使用的方法
 // const pexelsList = ref([])
 // const getPexlesData = async () => {
