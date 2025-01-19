@@ -11,5 +11,7 @@ export default {
     return getters.categories.findIndex(
       (item) => item.id === getters.currentCategory.id
     )
-  }
+  },
+  // 搜索历史
+  histories: (state) => state.search.histories
 }

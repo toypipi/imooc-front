@@ -56,7 +56,7 @@
 // 双向绑定
 const EMIT_UPDATE_MODELVALUE = 'update:modelValue'
 // search
-const EMIT_SEARCH = 'update:search'
+const EMIT_SEARCH = 'search'
 // 删除所有文本
 const EMIT_CLEAR = 'clear'
 // 输入事件

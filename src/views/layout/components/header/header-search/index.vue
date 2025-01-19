@@ -1,6 +1,6 @@
 <template>
   <div class="w-full">
-    <m-search v-model="inputValue">
+    <m-search v-model="inputValue" @search="onsearchHandler">
       <template #dropdown>
         <!-- 搜索提示 -->
         <hint-vue
@@ -8,6 +8,11 @@
           v-show="inputValue"
           @itemClick="onsearchHandler"
         ></hint-vue>
+        <!-- 最近搜索 -->
+        <history-vue
+          @itemClick="onsearchHandler"
+          v-show="!inputValue"
+        ></history-vue>
       </template>
     </m-search>
   </div>
@@ -16,7 +21,10 @@
 <script setup>
 import { ref } from 'vue'
 import hintVue from './hint.vue'
+import historyVue from './history.vue'
+import { useStore } from 'vuex'
 
+const store = useStore()
 const inputValue = ref('')
 
 /**
@@ -24,6 +32,9 @@ const inputValue = ref('')
  */
 const onsearchHandler = (item) => {
   inputValue.value = item
+  if (item) {
+    store.commit('search/addHistory', item)
+  }
 }
 </script>
 
