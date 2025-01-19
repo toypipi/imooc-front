@@ -118,6 +118,21 @@ const server = http.createServer((req, res) => {
             }
           })
         )
+      } else if (parsedUrl.pathname === '/pexels/hint') {
+        // 此接口模拟了搜索提示接口，假设输入为123，则返回的数据为['123', '1234', '12345']
+        res.writeHead(200, { 'Content-Type': 'application/json' })
+        res.end(
+          JSON.stringify({
+            success: true,
+            code: 200,
+            message: 'success',
+            data: {
+              total: 4,
+              // 课程中该接口返回的数据格式
+              result: ['12306', '123', '1234', '12345']
+            }
+          })
+        )
       } else {
         res.writeHead(404, { 'Content-Type': 'text/plain' })
         res.end('Not Found')
