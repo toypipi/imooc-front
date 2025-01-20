@@ -133,6 +133,62 @@ const server = http.createServer((req, res) => {
             }
           })
         )
+      } else if (parsedUrl.pathname === '/pexels/themes') {
+        // 获取推荐主题
+        res.writeHead(200, { 'Content-Type': 'application/json' })
+        res.end(
+          JSON.stringify({
+            success: true,
+            code: 200,
+            message: 'success',
+            data: {
+              themes: [
+                {
+                  id: 'food photography',
+                  photo:
+                    'https://images.pexels.com/photos/459335/pexels-photo-459335.jpeg?auto=compress&cs=tinysrgb&h=130',
+                  title: 'food photography'
+                },
+                {
+                  id: 'Art',
+                  photo:
+                    'https://images.pexels.com/photos/250591/pexels-photo-250591.jpeg?auto=compress&cs=tinysrgb&h=130',
+                  title: 'Art'
+                },
+                {
+                  id: 'Afternoon tea',
+                  photo:
+                    'https://images.pexels.com/photos/1108572/pexels-photo-1108572.jpeg?auto=compress&cs=tinysrgb&h=130',
+                  title: 'Afternoon tea'
+                },
+                {
+                  id: 'Portrait Photography',
+                  photo:
+                    'https://images.pexels.com/photos/147411/italy-mountains-dawn-daybreak-147411.jpeg?auto=compress&cs=tinysrgb&h=13',
+                  title: 'Portrait Photography'
+                },
+                {
+                  id: 'Care',
+                  photo:
+                    'https://images.pexels.com/photos/1250260/pexels-photo-1250260.jpeg?auto=compress&cs=tinysrgb&h=13',
+                  title: 'Care'
+                },
+                {
+                  id: 'black theme',
+                  photo:
+                    'https://images.pexels.com/photos/1250260/pexels-photo-1250260.jpeg?auto=compress&cs=tinysrgb&h=13',
+                  title: 'black theme'
+                },
+                {
+                  id: 'nature photography',
+                  photo:
+                    'https://images.pexels.com/photos/1250260/pexels-photo-1250260.jpeg?auto=compress&cs=tinysrgb&h=13',
+                  title: 'nature photography'
+                }
+              ]
+            }
+          })
+        )
       } else {
         res.writeHead(404, { 'Content-Type': 'text/plain' })
         res.end('Not Found')
