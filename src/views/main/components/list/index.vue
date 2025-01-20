@@ -108,6 +108,17 @@ watch(
     })
   }
 )
+
+// 监听 searchText 变化
+watch(
+  () => store.getters.searchText,
+  (searchText) => {
+    resetQuery({
+      query: searchText,
+      page: 1
+    })
+  }
+)
 // 老师课程里使用的方法
 // const pexelsList = ref([])
 // const getPexlesData = async () => {
