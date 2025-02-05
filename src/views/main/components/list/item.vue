@@ -32,6 +32,7 @@
           icon="download"
           size="small"
           iconClass="fill-zinc-900 dark:fill-zinc-200"
+          @click="onDownload"
         ></m-button>
         <!-- 全屏 -->
         <m-button
@@ -62,7 +63,8 @@
 
 <script setup>
 import { randomRGB } from '@/utils/color'
-defineProps({
+import { saveAs } from 'file-saver'
+const props = defineProps({
   data: {
     type: Object,
     required: true
@@ -71,6 +73,17 @@ defineProps({
     type: Number
   }
 })
+
+/**
+ * 下载按钮点击事件
+ */
+const onDownload = () => {
+  console.log(props)
+  /**
+   * 1. 下载的图片链接
+   */
+  saveAs(props.data.src.original, props.data.photographer + '.jpg')
+}
 </script>
 
 <style lang="scss" scoped></style>
