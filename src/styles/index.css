@@ -1,9 +1,6 @@
-// 导入 tailwind 的基础指令组件
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
-// 主页 scrollbar 增加圆弧显示
 ::-webkit-scrollbar-thumb {
   border-radius: 10px;
 }
