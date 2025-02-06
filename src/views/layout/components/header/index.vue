@@ -8,7 +8,7 @@
         src="https://m.imooc.com/static/wap/static/common/img/logo-small@2x.png"
         alt=""
         srcset=""
-        class="h-4 cursor-pointer mr-2"
+        class="h-4 cursor-pointer mr-2 guide-home"
         @click="onToHome"
       />
       <headerSearchVue class="mr-1" />
