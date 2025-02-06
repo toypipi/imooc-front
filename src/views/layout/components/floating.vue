@@ -12,10 +12,10 @@
       ></m-svg-icon>
     </div>
     <!-- 反馈 -->
-    <m-popover class="flex items-center" placement="top-left">
+    <m-popover class="guide-feedback flex items-center" placement="top-left">
       <template #reference>
         <div
-          class="guide-feedback w-4 h-4 mb-1 bg-white dark:bg-zinc-900 border dark:border-0 border-zinc-200 rounded-full flex justify-center items-center cursor-pointer duration-200 group hover:shadow-lg"
+          class="w-4 h-4 mb-1 bg-white dark:bg-zinc-900 border dark:border-0 border-zinc-200 rounded-full flex justify-center items-center cursor-pointer duration-200 group hover:shadow-lg"
         >
           <m-svg-icon
             name="feedback"
@@ -65,4 +65,9 @@ const onGuideClick = () => {
 }
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.driver-fix-stacking {
+  position: fixed;
+  z-index: 100004 !important;
+}
+</style>
