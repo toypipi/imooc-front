@@ -3,6 +3,7 @@
     <div
       class="relative w-full rounded cursor-zoom-in group"
       :style="{ background: randomRGB() }"
+      @click="onToPinsClick"
     >
       <!-- 图片 -->
       <img
@@ -65,9 +66,9 @@
 
 <script setup>
 import { randomRGB } from '@/utils/color'
-import { useFullscreen } from '@vueuse/core'
+import { useElementBounding, useFullscreen } from '@vueuse/core'
 import { saveAs } from 'file-saver'
-import { ref } from 'vue'
+import { ref, computed } from 'vue'
 const props = defineProps({
   data: {
     type: Object,
@@ -78,6 +79,7 @@ const props = defineProps({
   }
 })
 
+const emits = defineEmits(['click'])
 /**
  * 下载按钮点击事件
  */
@@ -94,6 +96,32 @@ const onDownload = () => {
  */
 const imgTarget = ref(null)
 const { enter: onImgFullScreen } = useFullscreen(imgTarget)
+/**
+ * pins 跳转记录，记录图片的中心点（X | Y 位置 + 宽 | 高的一半）
+ */
+const {
+  x: imgContainerX,
+  y: imgContainerY,
+  width: imgContainerWidth,
+  height: imgContainerHeight
+} = useElementBounding(imgTarget)
+
+// 计算图片的中心点坐标，因为详情页的过渡动画是从 item 图片的中心点开始的
+const imgContainerCenter = computed(() => {
+  return {
+    translateX: parseInt(imgContainerX.value + imgContainerWidth.value / 2),
+    translateY: parseInt(imgContainerY.value + imgContainerHeight.value / 2)
+  }
+})
+/**
+ * 进入详情点击事件
+ */
+const onToPinsClick = () => {
+  emits('click', {
+    id: props.data.id,
+    location: imgContainerCenter.value
+  })
+}
 </script>
 
 <style lang="scss" scoped></style>

@@ -13,30 +13,37 @@
         :picturePreReading="false"
       >
         <template v-slot="{ item, width }">
-          <item-vue :data="item" :width="width" />
+          <item-vue :data="item" :width="width" @click="onToPins" />
         </template>
       </m-waterfall>
     </m-infinite>
+    <!-- 图片详情内容展示 -->
+    <transition
+      :css="false"
+      @before-enter="beforeEnter"
+      @enter="enter"
+      @leave="leave"
+    >
+      <pins-vue v-if="isVisiblePins" :id="currentPins.id"></pins-vue>
+    </transition>
   </div>
 </template>
 
 <script setup>
-import { getPexlesList } from '@/api/pexels'
+import { getPexlesList, BASE_DATA } from '@/api/pexels'
 import itemVue from './item.vue'
 import { ref, watch } from 'vue'
 import { useStore } from 'vuex'
 import axios from 'axios'
 import { isMobileTerminal } from '@/utils/flexible'
+import pinsVue from '@/views/pins/components/pins.vue'
+import gsap from 'gsap'
+import { useEventListener } from '@vueuse/core'
 
 const store = useStore()
 /**
  * 构建数据请求
  */
-const search = {
-  // TODO 将这里替换为你自己申请的 API_KEY
-  API_KEY: '',
-  BASE_URL: 'https://api.pexels.com/v1/search'
-}
 let params = {
   query: 'nature',
   page: 1,
@@ -59,10 +66,10 @@ const getPexlesData = () => {
     params.page++
   }
   axios
-    .get(search.BASE_URL, {
+    .get(BASE_DATA.BASE_URL + '/search', {
       params,
       headers: {
-        Authorization: search.API_KEY
+        Authorization: BASE_DATA.API_KEY
       }
     })
     .then((res) => {
@@ -128,6 +135,60 @@ watch(
 // }
 
 // getPexlesData()
+
+// 控制 pins 展示
+const isVisiblePins = ref(false)
+// 当前选中的 pins 属性
+const currentPins = ref({})
+
+/**
+ * 监听浏览器后退按钮的事件
+ */
+useEventListener(window, 'popstate', () => {
+  isVisiblePins.value = false
+})
+/**
+ * 进入 pins
+ */
+const onToPins = (item) => {
+  // 修改浏览器的 url
+  history.pushState(null, null, `/pins/${item.id}`)
+  isVisiblePins.value = true
+  currentPins.value = item
+}
+
+const beforeEnter = (el) => {
+  gsap.set(el, {
+    scaleX: 0,
+    scaleY: 0,
+    transformOrigin: '0 0',
+    translateX: currentPins.value.location?.translateX,
+    translateY: currentPins.value.location?.translateY,
+    opacity: 0
+  })
+}
+const enter = (el, done) => {
+  gsap.to(el, {
+    duration: 0.3,
+    scaleX: 1,
+    scaleY: 1,
+    opacity: 1,
+    translateX: 0,
+    translateY: 0,
+    onComplete: done
+  })
+}
+const leave = (el, done) => {
+  gsap.to(el, {
+    duration: 0.3,
+    scaleX: 0,
+    scaleY: 0,
+    opacity: 0,
+    translateX: currentPins.value.location?.translateX,
+    translateY: currentPins.value.location?.translateY,
+    onComplete: done
+  })
+}
 </script>
 
 <style lang="scss" scoped></style>
