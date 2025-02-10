@@ -14,22 +14,32 @@
         账号登录
       </h3>
       <!-- 表单 -->
-      <form>
+      <vee-form @submit="onLoginHandler">
         <!-- 用户名 -->
-        <input
+        <vee-field
           class="dark:bg-zinc-800 dark:text-zinc-400 border-b-zinc-400 border-b w-full outline-0 pb-1 px-1 text-base focus:border-b-main dark:focus:border-b-zinc-200 xlz;default:bg-zinc-900"
           type="text"
           name="username"
           placeholder="用户名"
           autocomplete="on"
+          :rules="validateUsername"
+        />
+        <vee-error-message
+          name="username"
+          class="text-sm text-red-600 block mt-0.5 text-left"
         />
         <!-- 密码 -->
-        <input
+        <vee-field
           class="dark:bg-zinc-800 dark:text-zinc-400 border-b-zinc-400 border-b w-full outline-0 pb-1 px-1 text-base focus:border-b-main dark:focus:border-b-zinc-200 xlz;default:bg-zinc-900"
           type="password"
           name="password"
           placeholder="密码"
           autocomplete="on"
+          :rules="validatePassword"
+        />
+        <vee-error-message
+          name="password"
+          class="text-sm text-red-600 block mt-0.5 text-left"
         />
         <!-- 跳转按钮 -->
         <div class="pt-1 pb-3 leading-[0px] text-right">
@@ -40,7 +50,9 @@
           >
         </div>
         <!-- 登录按钮 -->
-        <m-button class="w-full dark:bg-zinc-900 xl:dark:text-zinc-900"
+        <m-button
+          class="w-full dark:bg-zinc-900 xl:dark:text-zinc-800"
+          :isActiveAnim="false"
           >登录</m-button
         >
         <!-- 第三方登录 -->
@@ -50,13 +62,45 @@
           <!-- 微信 -->
           <m-svg-icon class="w-4 cursor-pointer" name="wexin"></m-svg-icon>
         </div>
-      </form>
+      </vee-form>
     </div>
+    <slider-captcha
+      v-if="isSliderCaptchaVisible"
+      @close="isSliderCaptchaVisible = false"
+      @success="onCaptchaSuccess"
+    ></slider-captcha>
   </div>
 </template>
 
 <script setup>
 import HeaderVue from '../components/header.vue'
+import SliderCaptcha from './slider-captcha.vue'
+import { ref } from 'vue'
+import {
+  Form as VeeForm,
+  Field as VeeField,
+  ErrorMessage as VeeErrorMessage
+} from 'vee-validate'
+
+import { validateUsername, validatePassword } from '../validate.js'
+
+// 控制 sliderCaptcha 展示
+const isSliderCaptchaVisible = ref(false)
+
+/**
+ * 触发登录，表单校验通过后才会触发
+ */
+const onLoginHandler = () => {
+  isSliderCaptchaVisible.value = true
+}
+
+/**
+ * 人类行为验证通过
+ */
+const onCaptchaSuccess = () => {
+  isSliderCaptchaVisible.value = false
+  // 登录操作
+}
 </script>
 
 <style lang="scss" scoped></style>
