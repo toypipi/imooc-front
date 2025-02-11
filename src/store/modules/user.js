@@ -60,6 +60,17 @@ export default {
         }`,
         6000
       )
+    },
+    /**
+     * 退出登录
+     */
+    logout(context) {
+      // 清空 token
+      context.commit('setToken', '')
+      // 清空用户信息
+      context.commit('setUserInfo', {})
+      // 刷新页面
+      location.reload()
     }
   }
 }

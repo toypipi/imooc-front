@@ -155,7 +155,7 @@ const server = http.createServer((req, res) => {
               nickname: '哪吒',
               regTime: '2022-02-25T01:44:34.774Z',
               avatar:
-                'https://m.imooc.com/static/wap/static/common/img/logo-small@2x.png',
+                'https://img1.baidu.com/it/u=2026386475,2001905621&fm=253&fmt=auto&app=138&f=JPEG?w=500&h=500',
               _id: '621834c3321e0a091c994ee0',
               username: 'LGD_Sunday',
               __v: 0,
