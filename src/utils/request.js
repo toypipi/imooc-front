@@ -1,10 +1,27 @@
 import axios from 'axios'
+import store from '@/store'
 
 const service = axios.create({
   // 根据项目的状态，自动切换请求的服务地址
   baseURL: import.meta.env.VITE_BASE_API,
   timeout: 5000 // request timeout
 })
+
+/**
+ * 请求拦截器
+ */
+service.interceptors.request.use(
+  (config) => {
+    if (store.getters.token) {
+      config.headers.Authorization = `Bearer ${store.getters.token}`
+    }
+    // return 出的对象，就是请求的配置对象
+    return config
+  },
+  (err) => {
+    return Promise.reject(err)
+  }
+)
 
 /**
  * 响应拦截器：

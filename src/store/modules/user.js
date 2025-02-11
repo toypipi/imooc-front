@@ -1,13 +1,16 @@
 // user 模块
 import md5 from 'md5'
-import { loginUser } from '@/api/sys'
+import { loginUser, getProfile } from '@/api/sys'
+import { message } from '@/libs'
 
 export default {
   namespaced: true,
   state: () => {
     return {
       // 登录的 token
-      token: ''
+      token: '',
+      // 用户信息
+      userInfo: {}
     }
   },
   mutations: {
@@ -16,6 +19,12 @@ export default {
      */
     setToken(state, newToken) {
       state.token = newToken
+    },
+    /**
+     * 保存用户信息
+     */
+    setUserInfo(state, newUserInfo) {
+      state.userInfo = newUserInfo
     }
   },
   actions: {
@@ -31,6 +40,26 @@ export default {
       })
       // 保存 token
       context.commit('setToken', data.token)
+      // 获取用户信息
+      context.dispatch('getProfile')
+    },
+    /**
+     * 获取用户信息
+     */
+    async getProfile(context) {
+      const data = await getProfile()
+      // 保存用户信息
+      context.commit('setUserInfo', data)
+      // 提示
+      message(
+        'success',
+        `欢迎您 ${
+          data.vipLevel
+            ? '尊贵的 VIP-' + data.vipLevel + '用户' + data.nickname
+            : data.nickname
+        }`,
+        6000
+      )
     }
   }
 }

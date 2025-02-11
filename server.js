@@ -144,6 +144,25 @@ const server = http.createServer((req, res) => {
             }
           })
         )
+      } else if (parsedUrl.pathname === '/user/profile') {
+        res.writeHead(200, { 'Content-Type': 'application/json' })
+        res.end(
+          JSON.stringify({
+            success: true,
+            code: 200,
+            message: 'success',
+            data: {
+              nickname: '哪吒',
+              regTime: '2022-02-25T01:44:34.774Z',
+              avatar:
+                'https://m.imooc.com/static/wap/static/common/img/logo-small@2x.png',
+              _id: '621834c3321e0a091c994ee0',
+              username: 'LGD_Sunday',
+              __v: 0,
+              vipLevel: 1
+            }
+          })
+        )
       } else if (parsedUrl.pathname === '/pexels/themes') {
         // 获取推荐主题
         res.writeHead(200, { 'Content-Type': 'application/json' })
