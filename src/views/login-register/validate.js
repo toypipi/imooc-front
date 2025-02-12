@@ -24,3 +24,17 @@ export const validatePassword = (val) => {
   }
   return true
 }
+
+/**
+ * 确认密码表单校验
+ * 1.定义方法
+ */
+export const validateConfirmPassword = (val, password) => {
+  if (!val) {
+    return '确认密码不能为空'
+  }
+  if (val !== password[0]) {
+    return '两次输入的密码不一致'
+  }
+  return true
+}

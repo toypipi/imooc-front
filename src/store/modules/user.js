@@ -41,12 +41,12 @@ export default {
       // 保存 token
       context.commit('setToken', data.token)
       // 获取用户信息
-      context.dispatch('getProfile')
+      context.dispatch('profile')
     },
     /**
      * 获取用户信息
      */
-    async getProfile(context) {
+    async profile(context) {
       const data = await getProfile()
       // 保存用户信息
       context.commit('setUserInfo', data)
