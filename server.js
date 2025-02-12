@@ -266,6 +266,26 @@ const server = http.createServer((req, res) => {
           res.writeHead(201, { 'Content-Type': 'application/json' })
           res.end(JSON.stringify(data))
         })
+      } else if (parsedUrl.pathname === '/sys/register') {
+        // 声明一个变量 body，并将其初始化为空字符串。这个变量将用于存储接收到的请求数据
+        let body = ''
+        // 为请求对象 req 添加一个事件监听器，监听 data 事件。每当有数据块（chunk）到达时，这个回调函数就会被调用。
+        req.on('data', (chunk) => {
+          // 拼接接收到的数据
+          body += chunk.toString()
+        })
+        console.log(body)
+        req.on('end', () => {
+          const data = {
+            success: true,
+            code: 200,
+            data: {},
+            message: '注册成功'
+          }
+          // 确保 res 在回调内部使用
+          res.writeHead(200, { 'Content-Type': 'application/json' })
+          res.end(JSON.stringify(data))
+        })
       } else {
         res.writeHead(404, { 'Content-Type': 'text/plain' })
         res.end('Not Found')

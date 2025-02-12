@@ -1,3 +1,7 @@
+# 项目地址
+
+[GitHub](https://github.com/toypipi/imooc-front)
+
 # DAY 1 项目雏形搭建
 
 《小慕前端》，对应的版本信息如下:

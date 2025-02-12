@@ -104,6 +104,7 @@ import {
 } from '../validate.js'
 import { useStore } from 'vuex'
 import { useRouter } from 'vue-router'
+import { LOGIN_TYPE_USER } from '@/constants'
 
 const loading = ref(false)
 /**
@@ -119,8 +120,27 @@ const confirmForm = ref({
   confirmPassword: ''
 })
 
-// 注册
-const onRegHandler = () => {}
+// 去注册
+const onRegHandler = async () => {
+  loading.value = true
+  try {
+    const payload = {
+      username: confirmForm.value.username,
+      password: confirmForm.value.password
+    }
+    await store.dispatch('user/register', confirmForm.value).then(() => {
+      loading.value = false
+    })
+    // 注册完成，触发登录
+    await store.dispatch('user/login', {
+      ...payload,
+      loginType: LOGIN_TYPE_USER
+    })
+  } finally {
+    loading.value = false
+  }
+  router.push('/')
+}
 
 // 去登录
 const onToLogin = async () => {

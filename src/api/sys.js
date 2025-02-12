@@ -25,6 +25,18 @@ export const loginUser = (data) => {
 }
 
 /**
+ * 注册
+ */
+
+export const registerUser = (data) => {
+  return request({
+    url: '/sys/register',
+    method: 'Post',
+    data
+  })
+}
+
+/**
  * 获取用户信息
  */
 
