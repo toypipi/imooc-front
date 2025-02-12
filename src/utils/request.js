@@ -28,13 +28,27 @@ service.interceptors.request.use(
  * 服务端返回数据之后，前端 .then 方法之前拦截
  */
 
-service.interceptors.response.use((response) => {
-  const { success, message, data } = response.data
-  if (success) {
-    return data
+service.interceptors.response.use(
+  (response) => {
+    const { success, message, data } = response.data
+    if (success) {
+      return data
+    }
+    // TODO:业务请求错误
+    return Promise.reject(new Error(message))
+  },
+  (error) => {
+    // 处理 token 超时
+    if (
+      error.response &&
+      error.response.data &&
+      error.response.data.code === 401
+    ) {
+      // 退出
+      store.dispatch('user/logout')
+    }
+    return Promise.reject(error)
   }
-  // TODO:业务请求错误
-  return Promise.reject(new Error(message))
-})
+)
 
 export default service
