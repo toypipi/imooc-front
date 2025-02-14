@@ -129,18 +129,7 @@ const server = http.createServer((req, res) => {
             data: {
               total: 4,
               // 课程中该接口返回的数据格式
-              result: [
-                '12306',
-                '123',
-                '1234',
-                '12345',
-                '1234567',
-                '112233',
-                '15468',
-                '41568',
-                '51167',
-                '55581'
-              ]
+              result: ['12306', '123', '1234', '12345', '1234567', '112233', '15468', '41568', '51167', '55581']
             }
           })
         )
@@ -154,10 +143,14 @@ const server = http.createServer((req, res) => {
             data: {
               nickname: '哪吒',
               regTime: '2022-02-25T01:44:34.774Z',
-              avatar:
-                'https://img1.baidu.com/it/u=2026386475,2001905621&fm=253&fmt=auto&app=138&f=JPEG?w=500&h=500',
+              avatar: 'https://img1.baidu.com/it/u=2026386475,2001905621&fm=253&fmt=auto&app=138&f=JPEG?w=500&h=500',
               _id: '621834c3321e0a091c994ee0',
               username: 'LGD_Sunday',
+              title: '莲花童子',
+              company: '天庭',
+              homePage: 'https://www.nezha.com',
+              introduction:
+                '嘿，我是哪吒，托塔天王李靖的三儿子，一个脚踩风火轮、手持乾坤圈的少年英雄，虽历经磨难，却始终心怀正义，不畏强权，誓要守护这世间公平与安宁！',
               __v: 0,
               vipLevel: 1
             }
