@@ -96,7 +96,7 @@ const close = () => {
 // fade 动画
 .fade-enter-active,
 .fade-leave-active {
-  transition: all v-bind(duration);
+  transition: all 0.3;
 }
 // 准备进入，离开完成
 .fade-enter-from,
@@ -107,7 +107,7 @@ const close = () => {
 // up 动画
 .up-enter-active,
 .up-leave-active {
-  transition: all v-bind(duration);
+  transition: all 0.3;
 }
 // 准备进入，离开完成
 .up-enter-from,
