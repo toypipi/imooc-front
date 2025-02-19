@@ -45,3 +45,15 @@ export const getProfile = () => {
     url: '/user/profile'
   })
 }
+
+/**
+ * 修改用户信息
+ */
+
+export const putProfile = (data) => {
+  return request({
+    url: '/user/profile',
+    method: 'Put',
+    data
+  })
+}

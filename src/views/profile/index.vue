@@ -39,32 +39,39 @@
         <!-- 用户名 -->
         <div class="py-1 xl:flex xl:items-center xl:my-1">
           <span class="w-8 block mb-1 font-bold dark:text-zinc-300 xl:mb-0">用户名</span>
-          <m-input class="w-full" max="20" v-model="$store.getters.userInfo.nickname"></m-input>
+          <m-input
+            class="w-full"
+            max="20"
+            :modelValue="$store.getters.userInfo.nickname"
+            @update:modelValue="changeStoreUserInfo('nickname', $event)"
+          ></m-input>
         </div>
         <!-- 职位 -->
         <div class="py-1 xl:flex xl:items-center xl:my-1">
           <span class="w-8 block mb-1 font-bold dark:text-zinc-300 xl:mb-0">职位</span>
-          <m-input class="w-full" v-model="$store.getters.userInfo.title"></m-input>
+          <m-input class="w-full" v-model="userInfo.title"></m-input>
         </div>
         <!-- 公司 -->
         <div class="py-1 xl:flex xl:items-center xl:my-1">
           <span class="w-8 block mb-1 font-bold dark:text-zinc-300 xl:mb-0">公司</span>
-          <m-input class="w-full" v-model="$store.getters.userInfo.company"></m-input>
+          <m-input class="w-full" v-model="userInfo.company"></m-input>
         </div>
         <!-- 个人主页 -->
         <div class="py-1 xl:flex xl:items-center xl:my-1">
           <span class="w-8 block mb-1 font-bold dark:text-zinc-300 xl:mb-0">个人主页</span>
-          <m-input class="w-full" v-model="$store.getters.userInfo.homePage"></m-input>
+          <m-input class="w-full" v-model="userInfo.homePage"></m-input>
         </div>
         <!-- 个人介绍 -->
         <div class="py-1 xl:flex xl:items-center xl:my-1">
           <span class="w-8 block mb-1 font-bold dark:text-zinc-300 xl:mb-0">个人介绍</span>
-          <m-input class="w-full" v-model="$store.getters.userInfo.introduction" type="textarea" max="100"></m-input>
+          <m-input class="w-full" v-model="userInfo.introduction" type="textarea" max="100"></m-input>
         </div>
 
         <!-- 保存修改 -->
         <m-button
           class="w-full mt-2 mb-4 dark:text-zinc-300 dark:bg-zinc-800 xl:w-[160px] xl:ml-[50%] xl:translate-x-[-50%]"
+          :loading="loading"
+          @click="onChangeProfile"
         >
           保存修改
         </m-button>
@@ -84,10 +91,11 @@
 
 <script setup>
 import { isMobileTerminal } from '@/utils/flexible'
-import { confirm } from '@/libs'
+import { confirm, message } from '@/libs'
 import { ref } from 'vue'
 import { useStore } from 'vuex'
 import { useRouter } from 'vue-router'
+import { putProfile } from '@/api/sys'
 
 const store = useStore()
 const router = useRouter()
@@ -109,6 +117,24 @@ const onAvatarClick = () => {
 }
 // 选中文件之后的回调
 const onSelectImgHandler = () => {}
+
+/**
+ * 数据本地的双向同步
+ */
+const userInfo = ref(store.getters.userInfo)
+
+/**
+ * 修改个人信息
+ */
+const loading = ref(false)
+const onChangeProfile = async () => {
+  loading.value = true
+  await putProfile(userInfo.value)
+  message('success', '用户信息修改成功')
+  // 同步 vuex
+  store.commit('user/setUserInfo', userInfo.value)
+  loading.value = false
+}
 </script>
 
 <style lang="scss" scoped></style>
