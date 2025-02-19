@@ -32,5 +32,10 @@ export default defineConfig({
         rewrite: (path) => path.replace(/^\/api/, '') // 路径重写规则，去掉请求路径中的 '/api' 前缀
       }
     }
+  },
+  define: {
+    __VUE_OPTIONS_API__: false,
+    __VUE_PROD_DEVTOOLS__: false,
+    __VUE_PROD_HYDRATION_MISMATCH_DETAILS__: false
   }
 })
