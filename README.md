@@ -97,8 +97,7 @@ tailwindcss 初体验。修改 `src/App.vue` 中的内容。
     />
     <div class="pt-6 text-center space-y-4 md:p-8 md:text-left">
       <p class="text-g font-medium text-zinc-100">
-        "这是使用 tailwindcss 来实现的一个基础的卡片区域，在实现该
-        卡片区域的过程中，我们从来没有离开过HTML区域"
+        "这是使用 tailwindcss 来实现的一个基础的卡片区域，在实现该 卡片区域的过程中，我们从来没有离开过HTML区域"
       </p>
       <div class="font-medium">LGD_Sunday</div>
       <div calss="text-slate-500">中前台前端解决方案</div>
@@ -218,7 +217,7 @@ npm i --save-dev vite-plugin-svg-icons@2.0.1
 
 可以在这里申请一个免费的 [API Key](https://www.pexels.com/api/)，官方[详细文档](https://www.pexels.com/api/documentation/)。
 
-将 `src\views\main\components\list\index.vue` 中的 API Key 替换为你自己申请的。
+将 `.env.example` 中的 `VITE_PEXELS_API_KEY` 替换为你自己申请的,并修改文件名为`.env`。
 
 程序代码可以参考这个仓库[pexles_clone](https://github.com/Ekefrancisokechukwu/pexles_clone/blob/main/src/utils/useFetch.jsx)。
 

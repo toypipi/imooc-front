@@ -46,7 +46,6 @@ export const getPexelsFromId = (id) => {
 
 // 以下为获取 pexel 官网图片数据接口
 export const BASE_DATA = {
-  // TODO 将这里替换为你自己申请的 API_KEY
-  API_KEY: '',
+  API_KEY: import.meta.env.VITE_PEXELS_API_KEY,
   BASE_URL: 'https://api.pexels.com/v1'
 }
