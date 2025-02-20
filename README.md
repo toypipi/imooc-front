@@ -262,3 +262,7 @@ npm i --save-dev vite-plugin-svg-icons@2.0.1
 | openid      | Openid                          | 微信登录时必传            |
 | nickname    | 微信获取到的用户信息 nickname   | 微信登录时必传            |
 | headimgurl  | 微信获取到的用户信息 headimgurl | 微信登录时必传            |
+
+# DAY 15
+
+由于我没有阿里云服务器，所以没有测试用户头像上传功能,但是这部分功能已经实现,如果有需要并且有阿里云服务器的话,需要自行测试这部分功能。
