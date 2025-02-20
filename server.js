@@ -212,6 +212,29 @@ const server = http.createServer((req, res) => {
             }
           })
         )
+      } else if (parsedUrl.pathname === '/user/sts') {
+        // 获取阿里云STS临时凭证
+        res.writeHead(200, { 'Content-Type': 'application/json' })
+        res.end(
+          JSON.stringify({
+            success: true,
+            code: 200,
+            message: 'success',
+            data: {
+              RequestId: '',
+              AssumedRoleUser: {
+                Arn: '',
+                AssumedRoleId: ''
+              },
+              Credentials: {
+                AccessKeyId: '',
+                AccessKeySecret: '',
+                Expiration: '',
+                SecurityToken: ''
+              }
+            }
+          })
+        )
       } else {
         res.writeHead(404, { 'Content-Type': 'text/plain' })
         res.end('Not Found')

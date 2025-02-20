@@ -135,7 +135,6 @@ const onSelectImgHandler = () => {
   const imgFile = inputFileTarget.value.files[0]
   // 生成 blob 对象
   const blob = URL.createObjectURL(imgFile)
-  console.log(blob)
   // 获取到 blob 类文件对象
   currentBlog.value = blob
   // 展示 dialog
