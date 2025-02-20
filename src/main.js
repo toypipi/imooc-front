@@ -9,6 +9,7 @@ import useTheme from './utils/theme'
 import './styles/index.scss'
 // 注册 svg-icons
 import 'virtual:svg-icons-register'
+import './permission'
 
 useREM()
 useTheme()
