@@ -1,7 +1,5 @@
 <template>
-  <div
-    class="relative h-screen bg-white dark:zinc-800 text-center xl:bg-zinc-200"
-  >
+  <div class="relative h-screen bg-white dark:zinc-800 text-center xl:bg-zinc-200">
     <!-- 头部图片 -->
     <header-vue></header-vue>
     <!-- 表单区 -->
@@ -62,8 +60,9 @@
           <a
             class="inline-block pb-1 text-zinc-400 text-right dark:text-zinc-600 hover:text-zinc-600 dark:hover:text-zinc-400 text-sm duration-300 cursor-pointer"
             @click="onToLogin"
-            >去登录</a
           >
+            去登录
+          </a>
         </div>
         <!-- 注册协议 -->
         <div class="text-center">
@@ -71,8 +70,9 @@
             class="text-zinc-400 dark:text-zinc-600 hover:text-zinc-600 dark:hover:text-zinc-400 text-sm duration-300"
             href="https://m.imooc.com/newfaq?id=89"
             target="_blank"
-            >注册即同意《慕课网注册协议》</a
           >
+            注册即同意《慕课网注册协议》
+          </a>
         </div>
 
         <!-- 登录按钮 -->
@@ -80,8 +80,9 @@
           class="w-full dark:bg-zinc-900 xl:dark:text-zinc-800"
           :isActiveAnim="false"
           :loading="loading"
-          >立即注册</m-button
         >
+          立即注册
+        </m-button>
       </vee-form>
     </div>
   </div>
@@ -144,6 +145,8 @@ const onRegHandler = async () => {
 
 // 去登录
 const onToLogin = async () => {
+  // 设置路由跳转的动画类型
+  store.commit('app/changeRouterType', 'push')
   router.push('/login')
 }
 </script>

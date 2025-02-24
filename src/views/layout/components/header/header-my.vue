@@ -49,9 +49,7 @@
           class="w-1.5 h-1.5 mr-1"
           fillClass="fill-zinc-900 dark:fill-zinc-300"
         ></m-svg-icon>
-        <span class="text-sm text-zinc-800 dark:text-zinc-300">{{
-          item.title
-        }}</span>
+        <span class="text-sm text-zinc-800 dark:text-zinc-300">{{ item.title }}</span>
       </div>
     </div>
   </m-popover>
@@ -75,6 +73,8 @@ const store = useStore()
  * 登录按钮点击事件
  */
 const onTologin = () => {
+  // 设置路由跳转的动画类型
+  store.commit('app/changeRouterType', 'push')
   router.push('/login')
 }
 
@@ -88,6 +88,8 @@ const onItemClick = (item) => {
     })
     return
   }
+  // 设置路由跳转的动画类型
+  store.commit('app/changeRouterType', 'push')
   router.push(item.path)
 }
 </script>

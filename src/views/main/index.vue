@@ -1,6 +1,7 @@
 <template>
   <div
     class="h-full overflow-auto bg-white dark:bg-zinc-800 duration-500 scrollbar-thin scrollbar-thumb-transparent xl:scrollbar-thumb-zinc-200 xl:dark:scrollbar-thumb-zinc-900 scrollbar-track-transparent"
+    ref="containerTarget"
   >
     <navigation-vue></navigation-vue>
     <div class="max-w-screen-xl mx-auto relative m-1 xl:mt-4">
@@ -35,20 +36,53 @@
   </div>
 </template>
 
+<script>
+export default {
+  name: 'home' // 给组件添加 name 选项，用于 keep-alive 的 include 数组元素匹配进行缓存
+}
+</script>
 <script setup>
+import { ref, onActivated } from 'vue'
+import { useScroll } from '@vueuse/core'
 import navigationVue from './components/navigation/index.vue'
 import listVue from './components/list/index.vue'
 import { isMobileTerminal } from '@/utils/flexible'
+import { useStore } from 'vuex'
+import { useRouter } from 'vue-router'
+
+const store = useStore()
+const router = useRouter()
 
 /**
  * VIP click
  */
-const onVipClick = () => {}
+const onVipClick = () => {
+  // 设置路由跳转的动画类型
+  store.commit('app/changeRouterType', 'push')
+  router.push('/member')
+}
 
 /**
  * My click
  */
-const onMyClick = () => {}
+const onMyClick = () => {
+  // 设置路由跳转的动画类型
+  store.commit('app/changeRouterType', 'push')
+  if (store.getters.token) {
+    router.push('/profile')
+  } else {
+    router.push('/login')
+  }
+}
+
+// 记录滚动位置
+const containerTarget = ref(null)
+const { y: containerTargetScrollY } = useScroll(containerTarget)
+// keep-alive 缓存的组件再次可见时，会触发 onActivated 钩子
+onActivated(() => {
+  if (!containerTarget.value) return
+  containerTarget.value.scrollTop = containerTargetScrollY.value
+})
 </script>
 
 <style lang="scss" scoped></style>

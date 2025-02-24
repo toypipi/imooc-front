@@ -4,23 +4,42 @@
       class="relative max-w-screen-lg mx-auto bg-white dark:bg-zinc-900 duration-500 xl:rounded-sm xl:border-zinc-200 xl:dark:border-zinc-600 xl:border xl:px-4 xl:py-2"
     >
       <!-- 移动端 navbar -->
-      <m-navbar sticky v-if="isMobileTerminal" :clickLeft="onNavbarLeftClick">个人资料</m-navbar>
+      <m-navbar sticky v-if="isMobileTerminal" :clickLeft="onNavbarLeftClick">
+        个人资料
+      </m-navbar>
       <!-- PC 端标题 -->
-      <div v-else class="text-lg font-bold text-center mb-4 dark:text-zinc-300">个人资料</div>
+      <div v-else class="text-lg font-bold text-center mb-4 dark:text-zinc-300">
+        个人资料
+      </div>
       <div class="h-full w-full xl:w-2/3 px-1 pb-4 text-sm mt-2 xl:text-center">
         <!-- 头像部分 -->
         <div class="py-1 xl:absolute xl:right-[16%] xl:text-center">
-          <span class="w-8 inline-block mb-2 font-black text-sm dark:text-zinc-300 xl:block xl:mx-auto">我的头像</span>
+          <span
+            class="w-8 inline-block mb-2 font-black text-sm dark:text-zinc-300 xl:block xl:mx-auto"
+          >
+            我的头像
+          </span>
           <div
             class="relative w-[80px] h-[80px] group xl:cursor-pointer xl:left-1/2 xl:translate-x-[-50%]"
             @click="onAvatarClick"
           >
             <!-- 头像 -->
-            <img class="rounded-full w-full h-full xl:inline-block" :src="$store.getters.userInfo.avatar" alt="" />
+            <img
+              class="rounded-full w-full h-full xl:inline-block"
+              :src="$store.getters.userInfo.avatar"
+              alt=""
+            />
             <!-- 鼠标移入 -->
-            <div class="absolute top-0 rounded-full w-full h-full bg-black/40 hidden xl:group-hover:block">
-              <m-svg-icon name="change-header-image" class="w-2 h-2 m-auto mt-2"></m-svg-icon>
-              <div class="text-xs text-white dark:text-zinc-300 scale-90 mt-0.5">点击更换头像</div>
+            <div
+              class="absolute top-0 rounded-full w-full h-full bg-black/40 hidden xl:group-hover:block"
+            >
+              <m-svg-icon
+                name="change-header-image"
+                class="w-2 h-2 m-auto mt-2"
+              ></m-svg-icon>
+              <div class="text-xs text-white dark:text-zinc-300 scale-90 mt-0.5">
+                点击更换头像
+              </div>
             </div>
           </div>
           <!-- 隐藏域 -->
@@ -58,13 +77,22 @@
         </div>
         <!-- 个人主页 -->
         <div class="py-1 xl:flex xl:items-center xl:my-1">
-          <span class="w-8 block mb-1 font-bold dark:text-zinc-300 xl:mb-0">个人主页</span>
+          <span class="w-8 block mb-1 font-bold dark:text-zinc-300 xl:mb-0">
+            个人主页
+          </span>
           <m-input class="w-full" v-model="userInfo.homePage"></m-input>
         </div>
         <!-- 个人介绍 -->
         <div class="py-1 xl:flex xl:items-center xl:my-1">
-          <span class="w-8 block mb-1 font-bold dark:text-zinc-300 xl:mb-0">个人介绍</span>
-          <m-input class="w-full" v-model="userInfo.introduction" type="textarea" max="100"></m-input>
+          <span class="w-8 block mb-1 font-bold dark:text-zinc-300 xl:mb-0">
+            个人介绍
+          </span>
+          <m-input
+            class="w-full"
+            v-model="userInfo.introduction"
+            type="textarea"
+            max="100"
+          ></m-input>
         </div>
 
         <!-- 保存修改 -->
@@ -88,11 +116,17 @@
     </div>
     <!-- PC 端 -->
     <m-dialog v-if="!isMobileTerminal" title="裁剪头像" v-model="isDialogVisible">
-      <change-avatar-vue :blob="currentBlog" @close="isDialogVisible = false"></change-avatar-vue>
+      <change-avatar-vue
+        :blob="currentBlog"
+        @close="isDialogVisible = false"
+      ></change-avatar-vue>
     </m-dialog>
     <!-- 移动端 -->
     <m-popup v-else :class="{ 'h-screen': isDialogVisible }" v-model="isDialogVisible">
-      <change-avatar-vue :blob="currentBlog" @close="isDialogVisible = false"></change-avatar-vue>
+      <change-avatar-vue
+        :blob="currentBlog"
+        @close="isDialogVisible = false"
+      ></change-avatar-vue>
     </m-popup>
   </div>
 </template>
@@ -111,6 +145,8 @@ const router = useRouter()
 
 // 移动端下 navbar
 const onNavbarLeftClick = () => {
+  // 设置路由跳转的动画类型
+  store.commit('app/changeRouterType', 'back')
   router.back()
 }
 // 移动端退出登录

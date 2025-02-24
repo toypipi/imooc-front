@@ -11,7 +11,9 @@ export default {
       // 当前选中的分类
       currentCategory: ALL_CATEGORY_ITEM,
       // 搜索的文本
-      searchText: ''
+      searchText: '',
+      // 路由跳转的动画类型
+      routerType: 'none'
     }
   },
   mutations: {
@@ -26,6 +28,9 @@ export default {
      */
     changeSearchText(state, newText) {
       state.searchText = newText
+    },
+    changeRouterType(state, type) {
+      state.routerType = type
     }
   },
   actions: {}
