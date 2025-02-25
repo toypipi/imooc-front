@@ -28,5 +28,13 @@ export default [
     meta: {
       user: true
     }
+  },
+  {
+    path: '/member',
+    name: 'member',
+    component: () => import('@/views/member/index.vue'),
+    meta: {
+      user: true
+    }
   }
 ]

@@ -129,7 +129,18 @@ const server = http.createServer((req, res) => {
             data: {
               total: 4,
               // 课程中该接口返回的数据格式
-              result: ['12306', '123', '1234', '12345', '1234567', '112233', '15468', '41568', '51167', '55581']
+              result: [
+                '12306',
+                '123',
+                '1234',
+                '12345',
+                '1234567',
+                '112233',
+                '15468',
+                '41568',
+                '51167',
+                '55581'
+              ]
             }
           })
         )
@@ -143,7 +154,8 @@ const server = http.createServer((req, res) => {
             data: {
               nickname: '哪吒',
               regTime: '2022-02-25T01:44:34.774Z',
-              avatar: 'https://img1.baidu.com/it/u=2026386475,2001905621&fm=253&fmt=auto&app=138&f=JPEG?w=500&h=500',
+              avatar:
+                'https://img1.baidu.com/it/u=2026386475,2001905621&fm=253&fmt=auto&app=138&f=JPEG?w=500&h=500',
               _id: '621834c3321e0a091c994ee0',
               username: 'LGD_Sunday',
               title: '莲花童子',
@@ -233,6 +245,60 @@ const server = http.createServer((req, res) => {
                 SecurityToken: ''
               }
             }
+          })
+        )
+      } else if (parsedUrl.pathname === '/user/vip/pay/list') {
+        // 获取 VIP 支付列表
+        res.writeHead(200, { 'Content-Type': 'application/json' })
+        res.end(
+          JSON.stringify({
+            success: true,
+            code: 200,
+            message: 'success',
+            data: [
+              {
+                id: 0,
+                title: '连续包月',
+                desc: '次月 ￥19 续费，可随时取消',
+                oldPrice: '29',
+                price: '19'
+              },
+              {
+                id: 1,
+                title: '连续包年',
+                desc: '次月 ￥198 续费，可随时取消',
+                oldPrice: '258',
+                price: '198'
+              },
+              {
+                id: 2,
+                title: '连续包季',
+                desc: '次月 ￥53 续费，可随时取消',
+                oldPrice: '68',
+                price: '53'
+              },
+              {
+                id: 3,
+                title: '月卡',
+                desc: '',
+                oldPrice: '39',
+                price: '29'
+              },
+              {
+                id: 4,
+                title: '季卡',
+                desc: '',
+                oldPrice: '79',
+                price: '68'
+              },
+              {
+                id: 5,
+                title: '年卡',
+                desc: '',
+                oldPrice: '298',
+                price: '258'
+              }
+            ]
           })
         )
       } else {
