@@ -12,6 +12,7 @@ const QQ_LOGIN_URL =
 </script>
 <script setup>
 import { onMounted } from 'vue'
+import brodacast from './brodacast'
 
 // QQ 登录挂起
 // QQ 登录调试必须要将代码上传到线上，本地无法测试
@@ -34,6 +35,8 @@ onMounted(() => {
         figureurl_qq_2,
         accessToken
       }
+      brodacast.send(oauthObj)
+      window.close()
     }
   )
 })
@@ -52,6 +55,12 @@ const openQQWindow = () => {
     'oauth2Login_10609',
     'width=585,height=525,toolbar=no,menubar=no,scrollbars=no,resizable=yes,location=yes,status=no'
   )
+  // 等待
+  brodacast.wait().then((oauthObj) => {
+    console.log('QQ 登录成功', oauthObj)
+    brodacast.clear()
+    // 执行登录操作
+  })
 }
 </script>
 
