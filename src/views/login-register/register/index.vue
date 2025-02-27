@@ -104,17 +104,20 @@ import {
   validateConfirmPassword
 } from '../validate.js'
 import { useStore } from 'vuex'
-import { useRouter } from 'vue-router'
+import { useRoute, useRouter } from 'vue-router'
 import { LOGIN_TYPE_USER } from '@/constants'
 
 const loading = ref(false)
+
 /**
- * 出入规则
+ * 插入规则
  */
 defineRule('validateConfirmPassword', validateConfirmPassword)
 
 const store = useStore()
 const router = useRouter()
+const route = useRoute()
+
 const confirmForm = ref({
   username: '',
   password: '',
@@ -129,7 +132,8 @@ const onRegHandler = async () => {
       username: confirmForm.value.username,
       password: confirmForm.value.password
     }
-    await store.dispatch('user/register', confirmForm.value).then(() => {
+    // 注册
+    await store.dispatch('user/register', { ...payload, ...route.query }).then(() => {
       loading.value = false
     })
     // 注册完成，触发登录

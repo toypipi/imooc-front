@@ -2,6 +2,7 @@
 import md5 from 'md5'
 import { loginUser, registerUser, getProfile } from '@/api/sys'
 import { message } from '@/libs'
+import { LOGIN_TYPE_OAUTH_NO_REGISTER_CODE } from '@/constants'
 
 export default {
   namespaced: true,
@@ -49,6 +50,10 @@ export default {
         ...payload,
         password: password ? md5(password) : ''
       })
+      // 判断是否需要扫码注册
+      if (data.code === LOGIN_TYPE_OAUTH_NO_REGISTER_CODE) {
+        return data.code
+      }
       // 保存 token
       context.commit('setToken', data.token)
       // 获取用户信息
