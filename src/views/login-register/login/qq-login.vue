@@ -38,6 +38,9 @@ onMounted(() => {
         accessToken
       }
       brodacast.send(oauthObj)
+
+      // 针对于 移动端而言：同通过移动端触发 QQ 登录会显示三个页面，原页面、QQ、调起页面、回调页面。并且移动端一个页面展示整屏内容，且无法通过 window.close() 关闭，所以在移动端中，我们需要在当前页面继续进行后续操作。
+      oauthLogin(LOGIN_TYPE_QQ, oauthObj)
       window.close()
     }
   )

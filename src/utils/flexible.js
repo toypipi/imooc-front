@@ -12,6 +12,12 @@ export const isMobileTerminal = computed(() => {
   return width.value < PC_DEVICE_WIDTH
 })
 
+// export const isMobileTerminal = computed(() => {
+//   return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
+//     navigator.userAgent
+//   )
+// })
+
 /**
  * 动态指定 rem 基准值，最大为 40px
  * 根据用户的屏幕宽度，进行一些计算，把计算出来的值赋给 html 的跟标签作为 fontsize 大小

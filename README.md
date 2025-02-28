@@ -293,3 +293,5 @@ npm i --save-dev vite-plugin-svg-icons@2.0.1
 ## 第三放开发平台
 
 1. [QQ 互联](https://connect.qq.com/)
+
+测试移动端登录，可以先使用草料二维码将登录页面生成二维码，然后使用手机 QQ 扫码登录。
