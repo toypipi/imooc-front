@@ -46,3 +46,6 @@ export const LOGIN_TYPE_WX = 'WX'
 // STS 上传数据
 export const REGION = 'oss-cn-beijing'
 export const BUCKET = 'imooc-front'
+
+// 兔小巢反馈地址
+export const FEEDBACK_URL = import.meta.env.VITE_FEEDBACK_URL
