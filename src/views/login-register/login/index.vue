@@ -61,10 +61,9 @@
         <!-- 第三方登录 -->
         <div class="flex justify-around mt-4">
           <!-- QQ -->
-
           <qq-login></qq-login>
           <!-- 微信 -->
-          <m-svg-icon class="w-4 cursor-pointer" name="wexin"></m-svg-icon>
+          <weixin-login></weixin-login>
         </div>
       </vee-form>
     </div>
@@ -91,6 +90,7 @@ import { LOGIN_TYPE_USER } from '@/constants'
 import { useStore } from 'vuex'
 import { useRouter } from 'vue-router'
 import qqLogin from './qq-login.vue'
+import weixinLogin from './weixin-login.vue'
 
 const store = useStore()
 const router = useRouter()

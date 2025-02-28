@@ -301,6 +301,50 @@ const server = http.createServer((req, res) => {
             ]
           })
         )
+      } else if (parsedUrl.pathname === '/sys/wxlogin/data') {
+        // 获取微信登录前置数据
+        res.writeHead(200, { 'Content-Type': 'application/json' })
+        res.end(
+          JSON.stringify({
+            success: true,
+            code: 200,
+            message: 'success',
+            data: {
+              appId: '',
+              appSecret: '',
+              redirectUri: '',
+              state: ''
+            }
+          })
+        )
+      } else if (parsedUrl.pathname === '/sys/wxlogin/access_token') {
+        // 微信登录获取 access_token
+        res.writeHead(200, { 'Content-Type': 'application/json' })
+        res.end(
+          JSON.stringify({
+            success: true,
+            code: 200,
+            message: 'success',
+            data: {
+              accessToken: '',
+              openid: ''
+            }
+          })
+        )
+      } else if (parsedUrl.pathname === '/sys/wxlogin/userinfo') {
+        // 微信登录获取用户信息
+        res.writeHead(200, { 'Content-Type': 'application/json' })
+        res.end(
+          JSON.stringify({
+            success: true,
+            code: 200,
+            message: 'success',
+            data: {
+              accessToken: '',
+              openid: ''
+            }
+          })
+        )
       } else {
         res.writeHead(404, { 'Content-Type': 'text/plain' })
         res.end('Not Found')

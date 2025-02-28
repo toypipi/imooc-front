@@ -270,7 +270,7 @@ npm i --save-dev vite-plugin-svg-icons@2.0.1
 
 # DAY 18
 
-## 第三方登录流程
+## QQ 登录流程
 
 1. 点击第三方登录按钮:执行 window.open 方法，打开一个第三方指定的 URL 窗口，该地址会指向第三方登录的 URL，并且由第三方提供一个对应的二维码
 2. 弹出一个小窗口，展示对应二维码:此处展示的二维码，即为上一步中第三方提供的二维码
@@ -290,8 +290,23 @@ npm i --save-dev vite-plugin-svg-icons@2.0.1
 1. 对接第三方平台，获取第三方平台的用户信息
 2. 利用该用户信息，完成本应用的注册
 
+## 微信登录流程
+
+1. 通过 微信登录前置数据获取 接口，获取登录数据(比如 APP ID)
+2. 根据获取到的数据，拼接得到 open url 地址
+3. 打开该地址，展示微信登录二维码
+4. 移动端微信扫码确定登录
+5. 从当前窗口中解析 window.location.search 得到用户的 code 数据
+6. 根据 appId、appSecret、code 通过接口获取用户的 access_token
+7. 根据 acces token 获取用户信息
+8. 通过用户信息触发 oauthLogin 方法
+
 ## 第三放开发平台
 
 1. [QQ 互联](https://connect.qq.com/)
 
 测试移动端登录，可以先使用草料二维码将登录页面生成二维码，然后使用手机 QQ 扫码登录。
+
+2. [微信开放平台](https://open.weixin.qq.com/)
+
+移动端微信不能通过普通的 H5 调起微信 APP 触发登录。

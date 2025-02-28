@@ -1,6 +1,6 @@
 import store from '@/store'
 import router from '@/router'
-import { LOGIN_TYPE_OAUTH_NO_REGISTER_CODE } from '@/constant'
+import { LOGIN_TYPE_OAUTH_NO_REGISTER_CODE } from '@/constants'
 import { message } from '@/libs'
 
 /**

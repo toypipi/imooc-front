@@ -67,3 +67,42 @@ export const getSts = () => {
     url: '/user/sts'
   })
 }
+
+/**
+ * 微信登录前置数据获取
+ */
+
+export const getWXLoginData = () => {
+  return request({
+    url: '/sys/wxlogin/data'
+  })
+}
+
+/**
+ * 微信登录获取 access_token
+ */
+
+export const getWXLoginToken = (appid, secret, code) => {
+  return request({
+    url: '/sys/wxlogin/access_token',
+    params: {
+      appid,
+      secret,
+      code
+    }
+  })
+}
+
+/**
+ * 微信登录获取用户信息
+ */
+
+export const getWXLoginUserInfo = (accessToken, openid) => {
+  return request({
+    url: '/sys/wxlogin/userinfo',
+    params: {
+      accessToken,
+      openid
+    }
+  })
+}
