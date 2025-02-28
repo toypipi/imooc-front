@@ -49,3 +49,8 @@ export const BUCKET = 'imooc-front'
 
 // 兔小巢反馈地址
 export const FEEDBACK_URL = import.meta.env.VITE_FEEDBACK_URL
+
+// 微博 APP KEY
+export const WEI_BO_APP_KEY = import.meta.env.VITE_WEI_BO_APP_KEY
+// 微博 UID
+export const WEI_BO_UID = import.meta.env.VITE_WEI_BO_UID
