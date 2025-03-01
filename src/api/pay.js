@@ -9,3 +9,19 @@ export const getVipPayList = () => {
     url: '/user/vip/pay/list'
   })
 }
+
+/**
+ * 支付宝下单
+ */
+
+export const getAliPay = (subject, totalAmount, body, isMobile) => {
+  return request({
+    url: '/user/alipay',
+    params: {
+      subject,
+      totalAmount,
+      body,
+      isMobile
+    }
+  })
+}

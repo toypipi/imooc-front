@@ -106,3 +106,16 @@ export const getWXLoginUserInfo = (accessToken, openid) => {
     }
   })
 }
+
+/**
+ * 获取支付结果
+ */
+
+export const getPayResult = (out_trade_no) => {
+  return request({
+    url: '/sys/pay/result',
+    params: {
+      out_trade_no
+    }
+  })
+}

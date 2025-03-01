@@ -345,6 +345,30 @@ const server = http.createServer((req, res) => {
             }
           })
         )
+      } else if (parsedUrl.pathname === '/user/alipay') {
+        res.writeHead(200, { 'Content-Type': 'application/json' })
+        res.end(
+          JSON.stringify({
+            success: true,
+            code: 200,
+            message: 'success',
+            data: [
+              {
+                encodeURI: ''
+              }
+            ]
+          })
+        )
+      } else if (parsedUrl.pathname === 'sys/pay/result') {
+        res.writeHead(200, { 'Content-Type': 'application/json' })
+        res.end(
+          JSON.stringify({
+            success: true,
+            code: 200,
+            message: 'success',
+            data: true
+          })
+        )
       } else {
         res.writeHead(404, { 'Content-Type': 'text/plain' })
         res.end('Not Found')
