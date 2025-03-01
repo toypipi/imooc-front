@@ -323,3 +323,24 @@ npm i --save-dev vite-plugin-svg-icons@2.0.1
 
 [支付宝开放平台](https://open.alipay.com/)
 支付宝支付需要企业账号。
+
+## 支付宝支付流程梳理
+
+1. 用户在前端页面点击支付宝支付功能
+2. 前端调用服务端接口（下单接口）
+3. 服务端接收到请求，利用 alipay-sdk(nodejs)创建支付订单信息，得到支付宝返回的 url
+4. 服务端需要对该 url 进行 encode(encodeURIComponent)操作，以防止意外的转码
+5. 服务端返回该 url(encode 之后的)到前端
+6. 前端进行 decode 解码，得到支付的 url
+7. 前端控制跳转到该 url ，即为 支付宝用户支付页面
+8. 用户在该页面完成支付，支付完成之后，支付宝会回调两个地址:
+
+- returnUrl:支付完成的跳转地址,用于用户视觉感知支付已成功
+- notifyUrl:异步通知地址，以 http 或者 https 开头的，商户外网可以 post 访问的异步地址，用于接收支付宝返回的支付结果
+
+9. 前端通过 returnUrl 告知用户支付完成
+10. 服务端通过 notifyurl 完成用户支付之后的数据变更，同时需要对通知信息进行 验签 操作，并且在验签通过之后返回 success 给支付宝
+11. 区分 PC 端支付和移动端支付的关键在于:
+
+- 电脑端:服务端触发的接口为 alipay.trade.page.pay
+- 移动端:服务端触发的接口为 alipay.trade.wap.pay
