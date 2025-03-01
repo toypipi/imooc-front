@@ -264,11 +264,11 @@ npm i --save-dev vite-plugin-svg-icons@2.0.1
 | nickname    | 微信获取到的用户信息 nickname   | 微信登录时必传            |
 | headimgurl  | 微信获取到的用户信息 headimgurl | 微信登录时必传            |
 
-# DAY 15
+# DAY 15 用户头像上传
 
 由于我没有阿里云服务器，所以没有测试用户头像上传功能,但是这部分功能已经实现,如果有需要并且有阿里云服务器的话,需要自行测试这部分功能。
 
-# DAY 18
+# DAY 18 第三方登录
 
 ## QQ 登录流程
 
@@ -301,7 +301,7 @@ npm i --save-dev vite-plugin-svg-icons@2.0.1
 7. 根据 acces token 获取用户信息
 8. 通过用户信息触发 oauthLogin 方法
 
-## 第三放开发平台
+## 第三方开放平台
 
 1. [QQ 互联](https://connect.qq.com/)
 
@@ -311,10 +311,15 @@ npm i --save-dev vite-plugin-svg-icons@2.0.1
 
 移动端微信不能通过普通的 H5 调起微信 APP 触发登录。认证开发者需缴费 300 元。
 
-# DAY 19
+# DAY 19 用户反馈
 
 [兔小巢](https://txc.qq.com/)用户反馈平台。
 
-# DAY 20
+# DAY 20 微博分享
 
 [微博开放平台](https://open.weibo.com/)，使用公司业务号注册。
+
+# DAY 21 第三方支付
+
+[支付宝开放平台](https://open.alipay.com/)
+支付宝支付需要企业账号。
