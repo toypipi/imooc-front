@@ -1,5 +1,7 @@
 <template>
-  <div class="fixed left-0 bottom-0 w-screen text-center bg-white dark:bg-zinc-800 xl:hidden">
+  <div
+    class="fixed left-0 bottom-0 w-screen text-center bg-white dark:bg-zinc-800 xl:hidden"
+  >
     <!-- 特惠提示 -->
     <discounts-vue />
     <!-- 支付 -->
@@ -12,21 +14,27 @@
         </p>
         <p class="text-red-600">优惠券：限时立减￥10</p>
       </div>
-      <m-button class="w-[120px]" :isActiveAnimation="false" @click="onConfirmClick">立即开通</m-button>
+      <m-button class="w-[120px]" :isActiveAnimation="false" @click="onConfirmClick">
+        立即开通
+      </m-button>
     </div>
     <m-popup v-model="isOpenPopup" class="rounded">
-      <mobile-pay-select-vue />
+      <mobile-pay-select-vue :payData="payData" />
     </m-popup>
   </div>
 </template>
 
 <script setup>
-  import { ref } from 'vue'
-  import discountsVue from '../discounts.vue'
-  import mobilePaySelectVue from './mobile-pay-select.vue'
+import { ref } from 'vue'
+import discountsVue from '../discounts.vue'
+import mobilePaySelectVue from './mobile-pay-select.vue'
 
-  const isOpenPopup = ref(false)
-  const onConfirmClick = () => {
-    isOpenPopup.value = true
-  }
+const props = defineProps({
+  payData: Object
+})
+
+const isOpenPopup = ref(false)
+const onConfirmClick = () => {
+  isOpenPopup.value = true
+}
 </script>

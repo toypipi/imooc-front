@@ -33,6 +33,5 @@ const props = defineProps({
 
 const onAliPayClick = () => {
   alipay(props.payData.title, props.payData.desc)
-  console.log('支付宝支付')
 }
 </script>

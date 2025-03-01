@@ -359,7 +359,7 @@ const server = http.createServer((req, res) => {
             ]
           })
         )
-      } else if (parsedUrl.pathname === 'sys/pay/result') {
+      } else if (parsedUrl.pathname === '/sys/pay/result') {
         res.writeHead(200, { 'Content-Type': 'application/json' })
         res.end(
           JSON.stringify({
