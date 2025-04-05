@@ -26,7 +26,7 @@ const props = defineProps({
     type: Number,
     required: true
   },
-  // 遵循 dayjs fromat 标准：
+  // 遵循 dayjs format 标准：
   format: {
     type: String,
     default: 'HH:mm:ss'

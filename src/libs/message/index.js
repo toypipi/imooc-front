@@ -2,17 +2,18 @@ import { h, render } from 'vue'
 import messageComponent from './index.vue'
 
 export const message = (type, content, duration = 2000) => {
-  const destory = () => {  // 动画结束时的回调
+  const destroy = () => {
+    // 动画结束时的回调
     render(null, document.body)
   }
 
-  // 生成 message 组件的 vnode
-  const vnode = h(messageComponent, {
+  // 生成 message 组件的 vNode
+  const vNode = h(messageComponent, {
     type,
     content,
     duration,
-    destory
+    destroy
   })
 
-  render(vnode, document.body)  // 根据 vnode 渲染 dom
+  render(vNode, document.body) // 根据 vNode 渲染 dom
 }

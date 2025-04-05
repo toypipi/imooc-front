@@ -1,3 +1,4 @@
+<!-- 实现一个带有搜索图标、输入框、删除按钮、搜索按钮和下拉展示区的搜索组件 -->
 <template>
   <div
     class="group relative p-0.5 rounded-xl border-white dark:border-zinc-200 duration-500 hover:bg-red-100/40"

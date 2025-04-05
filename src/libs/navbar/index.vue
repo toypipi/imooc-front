@@ -1,6 +1,6 @@
 <template>
   <div
-    class="w-full h-5 border-b flex items-center z-10 bg-white dark:bg-zinc-800 broder-b-zinc-200 dark:border-b-zinc-700"
+    class="w-full h-5 border-b flex items-center z-10 bg-white dark:bg-zinc-800 border-b-zinc-200 dark:border-b-zinc-700"
     :class="[sticky ? 'sticky top-0 left-0' : 'relative']"
   >
     <!-- 左 -->
@@ -27,7 +27,7 @@
       class="h-full w-5 absolute right-0 flex items-center justify-center"
       @click="onClickRight"
     >
-      <slot name="right"> </slot>
+      <slot name="right"></slot>
     </div>
   </div>
 </template>
