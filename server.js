@@ -384,7 +384,6 @@ const server = http.createServer((req, res) => {
           // 拼接接收到的数据
           body += chunk.toString()
         })
-        console.log(body)
         req.on('end', () => {
           const data = {
             success: true,
@@ -404,7 +403,6 @@ const server = http.createServer((req, res) => {
           // 拼接接收到的数据
           body += chunk.toString()
         })
-        console.log(body)
         req.on('end', () => {
           const data = {
             success: true,
@@ -424,7 +422,6 @@ const server = http.createServer((req, res) => {
           // 拼接接收到的数据
           body += chunk.toString()
         })
-        console.log(body)
         req.on('end', () => {
           const data = {
             success: true,
@@ -450,7 +447,6 @@ const server = http.createServer((req, res) => {
           // 拼接接收到的数据
           body += chunk.toString()
         })
-        console.log(body)
         req.on('end', () => {
           const data = {
             success: true,

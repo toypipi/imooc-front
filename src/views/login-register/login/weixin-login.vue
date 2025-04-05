@@ -33,7 +33,6 @@ const onWeiXinLogin = async () => {
   )
   // 3.等待扫码成功
   brodacast.wait().then(async ({ code }) => {
-    console.log('等待扫码成功')
     // 关闭通知
     brodacast.clear()
     // 获取 accessToken

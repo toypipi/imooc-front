@@ -26,7 +26,6 @@ onMounted(() => {
     // 登录成功之后的回调，会在 登录回调页面中被执行
     // QQ 登录会存在缓存，登录成功一次之后，下次进入页面会自动重新登录
     ({ nickname, figureurl_qq_2 }, opts) => {
-      console.log('QQ 登录成功')
       // 注销登录，防止下次打开页面直接展示上一次的用户信息
       QC.Login.signOut()
       // 拿到 QQ 用户的唯一标识，通过这个标识来判断当前用户是否已经在我们的应用中完成注册了
@@ -62,7 +61,6 @@ const openQQWindow = () => {
   )
   // 等待
   brodacast.wait().then((oauthObj) => {
-    console.log('QQ 登录成功', oauthObj)
     brodacast.clear()
     // 执行登录操作
     oauthLogin(LOGIN_TYPE_QQ, oauthObj)

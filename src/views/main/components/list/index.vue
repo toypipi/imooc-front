@@ -85,7 +85,6 @@ const getPexlesData = () => {
       }
       // 修改 loading 状态
       loading.value = false
-      console.log(pexelsList.value)
     })
 }
 
@@ -131,7 +130,6 @@ watch(
 // const getPexlesData = async () => {
 //   const res = await getPexlesList(query)
 //   pexelsList.value = res.list
-//   console.log(res)
 // }
 
 // getPexlesData()

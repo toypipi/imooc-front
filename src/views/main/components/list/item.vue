@@ -85,7 +85,6 @@ const emits = defineEmits(['click'])
  * 下载按钮点击事件
  */
 const onDownload = () => {
-  console.log(props)
   /**
    * 1. 下载的图片链接
    */
