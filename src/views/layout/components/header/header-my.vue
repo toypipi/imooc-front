@@ -52,6 +52,13 @@
         <span class="text-sm text-zinc-800 dark:text-zinc-300">{{ item.title }}</span>
       </div>
     </div>
+    <div
+      v-else
+      class="text-zinc-800 dark:text-zinc-300 text-sm w-[150px] text-center cursor-pointer"
+      @click="goToLogin"
+    >
+      登录体验更多功能
+    </div>
   </m-popover>
 </template>
 
