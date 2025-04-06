@@ -1,3 +1,4 @@
+<!-- 创建一个带有图标和文本的菜单项 -->
 <template>
   <div class="w-5 flex flex-col items-center justify-between mx-0.5" @click="onItemClick">
     <m-svg-icon :name="icon" :fillClass="iconClass" class="w-2 h-2"></m-svg-icon>

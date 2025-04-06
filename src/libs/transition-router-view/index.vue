@@ -1,10 +1,14 @@
+<!-- 实现路由跳转时的动画效果 -->
 <template>
+  <!-- 渲染匹配到的路由组件 -->
   <router-view v-slot="{ Component }">
+    <!-- Vue 的过渡组件，用于添加进入和离开的动画效果 -->
     <transition
       :name="transitionName"
       @before-enter="beforeEnter"
       @after-leave="afterLeave"
     >
+      <!-- virtualTaskStack被用作<keep-alive>组件的include属性，这意味着只有virtualTaskStack中列出的组件名称会被缓存 -->
       <!-- component 指定 key 值为 $route.fullPath 让同一个动态路由也可以来回跳转，如从这个详情页跳到另一个详情页 -->
       <keep-alive :include="virtualTaskStack">
         <component
@@ -46,8 +50,17 @@ const props = defineProps({
   }
 })
 
+// 存储当前的路由跳转动画类型
 const transitionName = ref('')
 const router = useRouter()
+
+// 虚拟任务栈，存储需要缓存的组件名称，其中一定存在根页面
+const virtualTaskStack = ref([props.mainComponentName])
+// 清空栈中除了首页外的组件
+const clearTask = () => {
+  virtualTaskStack.value = [props.mainComponentName]
+}
+// 监听路由跳转，确定动画类型
 router.beforeEach((to) => {
   // 路由跳转前确定动画类型
   transitionName.value = props.routerType
@@ -66,20 +79,13 @@ router.beforeEach((to) => {
   }
 })
 
-// 处理动画状态，使新页面能够正常展示动画
+// 处理动画状态，控制动画的显示和隐藏，使新页面能够正常展示动画
 const isAnimation = ref(false)
 const beforeEnter = () => {
   isAnimation.value = true
 }
 const afterLeave = () => {
   isAnimation.value = false
-}
-
-// 虚拟任务栈，其中一定存在根页面
-const virtualTaskStack = ref([props.mainComponentName])
-// 清空栈中首页外的组件
-const clearTask = () => {
-  virtualTaskStack.value = [props.mainComponentName]
 }
 </script>
 
