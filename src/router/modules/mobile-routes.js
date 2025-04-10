@@ -1,4 +1,4 @@
-// 移动端路由表
+// 移动端路由配置
 export default [
   {
     path: '/',
