@@ -84,7 +84,7 @@ If you think the framework is great or are already using it, I hope you can give
 
 Alternatively, you can also buy me a coffee 🤭:
 
-|                 微信                 |               支付宝                |
+|                WeChat                |               Alipay                |
 | :----------------------------------: | :---------------------------------: |
 | ![微信](./docs/images/wechatpay.JPG) | ![支付宝](./docs/images/alipay.JPG) |
 
