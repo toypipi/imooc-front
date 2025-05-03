@@ -74,9 +74,11 @@ This is a front-end project built with Vue 3, Vite, and Tailwind CSS, inspired b
 
 ## 📸 Screenshots
 
-TODO
-
-![]()
+![Home Page](./docs/images/首页.png)
+![Search](./docs/images/搜索.png)
+![Categories](./docs/images/分类.png)
+![Guide Page](./docs/images/引导页.png)
+![Login Page](./docs/images/登录页.png)
 
 ## ❤️ Support the Project (Donation)
 
