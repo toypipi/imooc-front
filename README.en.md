@@ -42,7 +42,11 @@ This is a front-end project built with Vue 3, Vite, and Tailwind CSS, inspired b
     cd imooc-front
     ```
 
-2.  **Install dependencies**
+2.  **Rename the `.env.example` file to `.env`**
+
+Configure the Pexels API KEY, Tuxiaochao feedback address, Weibo app key, and Weibo uid as needed.Since the `.env` file contains personal information, it is not under version control.
+
+3.  **Install dependencies**
 
     ```bash
     npm install
@@ -50,7 +54,7 @@ This is a front-end project built with Vue 3, Vite, and Tailwind CSS, inspired b
 
     _If you encounter installation issues related to `node-sass` or `sass-loader`, try using `cnpm` or configuring an `npm` mirror._
 
-3.  **Run development server**
+4.  **Run development server**
 
     ```bash
     npm run dev
@@ -58,7 +62,7 @@ This is a front-end project built with Vue 3, Vite, and Tailwind CSS, inspired b
 
     The project will start at `http://localhost:xxxx` (check terminal output for the specific port).
 
-4.  **Start the backend mock API**
+5.  **Start the backend mock API**
 
     ```bash
     node server.js
@@ -66,11 +70,49 @@ This is a front-end project built with Vue 3, Vite, and Tailwind CSS, inspired b
 
     The server will start at `http://localhost:3001` 。
 
-5.  **Build for production**
+6.  **Build for production**
     ```bash
     npm run build
     ```
     The built files will be in the `dist` directory.
+
+## File Resource Directory 📚
+
+```text
+├─ src
+│  ├─ docs // Project Documentation
+│  ├─ api // API requests
+│  ├─ App.vue // Project root component, first-level route outlet
+│  ├─ assets  // Static resources
+│  │  ├─ icons // SVG icon files
+│  │  ├─ images // Image files. e.g., xxx.png
+│  │  └─ vue.svg // Logo
+│  ├─ constants // Constants
+│  ├─ libs // Common components, can be used for building a middle-platform component library or general component library
+│  ├─ main.js // Entry file
+│  ├─ permission.js // Page permission control center
+│  ├─ router // Routing
+│  │  ├─ index.js  // Routing processing center
+│  │  └─ modules // Route modules
+│  │     ├─ mobile-routes.js // Mobile routes
+│  │     └─ pc-routes.js // PC routes
+│  ├─ store  // Global state
+│  │  ├─ getters.js // Global state access processing
+│  │  ├─ index.js  // Global state center
+│  │  └─ modules  // State sub-modules
+│  ├─ style.css
+│  ├─ styles // Global styles
+│  │  ├─ index.css
+│  │  ├─ index.min.css
+│  │  └─ index.scss  // Global common style processing
+│  ├─ utils  // Utility modules
+│  ├─ vendor  // External vendor resources. e.g., Human verification
+│  └─ views  // Page components. Difference from components: components here correspond to the routing table, **displayed as pages**
+│     └─ layout  // Used for PC, separates first-level and second-level routes
+│        ├─ components // Business components under this page component
+│        └─ index.vue  // layout component
+├─ tailwind.config.js // Tailwind CSS configuration file, sibling to src
+└─ vite.config.js // Vite configuration file, sibling to src
 
 ## 📸 Screenshots
 
@@ -88,10 +130,11 @@ Alternatively, you can also buy me a coffee 🤭:
 
 |                WeChat                |               Alipay                |
 | :----------------------------------: | :---------------------------------: |
-| ![微信](./docs/images/wechatpay.JPG) | ![支付宝](./docs/images/alipay.JPG) |
+| ![WeChat](./docs/images/wechatpay.JPG) | ![Alipay](./docs/images/alipay.JPG) |
 
 Your support motivates the continuous development of the project!
 
 ## 🤝 Contributing
 
 Pull Requests and Issues are welcome.
+```
